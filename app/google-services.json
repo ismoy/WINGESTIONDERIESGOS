@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "20748096273",
+    "project_id": "wingestionderiesgos-62b7d",
+    "storage_bucket": "wingestionderiesgos-62b7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20748096273:android:966bc3aa80148bc95fb2b0",
+        "android_client_info": {
+          "package_name": "com.win.gestionderiesgos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20748096273-fkfas6r5v0vbujv50vfmaqk7qqn2bgsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc2OfifpRrxYx2CCBqxM0-494o24ucpfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20748096273-fkfas6r5v0vbujv50vfmaqk7qqn2bgsj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
