@@ -24,10 +24,13 @@ class AuthProvider {
  fun language() {
   auth.setLanguageCode("es")
  }
- suspend fun login(email:String, password: String): Task<AuthResult> {
+  fun login(email:String, password: String): Task<AuthResult> {
   return auth.signInWithEmailAndPassword(email, password)
  }
 
+ fun resetPassword(email: String): Task<Void> {
+  return auth.sendPasswordResetEmail(email)
+ }
  fun existSession(): Boolean {
   var exist: Boolean = false
   if (auth.currentUser != null) {
