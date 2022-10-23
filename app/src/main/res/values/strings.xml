@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WINGESTIONDERIESGOS</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="erroremptyfield">Por favor, ingresa el dato solicitado</string>
+    <string name="existemail">Ya tienes una cuenta en nuestro registro con ese correo</string>
+    <string name="espere_por_favor">Espere por favor...</string>
 </resources>
