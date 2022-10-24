@@ -152,7 +152,7 @@ class RegisterFragment : Fragment() {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         }
         dialog.show()
-        val saveData =Users(email,nameComplete,userName,password)
+        val saveData =Users(email,nameComplete,userName,password,0)
         viewModel.register(mAuthProvider.getId().toString(),saveData)
         viewModel.responseRegister.observe(viewLifecycleOwner, Observer {response->
          if (response.isSuccessful){
