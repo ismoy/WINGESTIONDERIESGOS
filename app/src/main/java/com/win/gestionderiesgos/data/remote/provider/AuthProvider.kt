@@ -24,7 +24,7 @@ class AuthProvider {
  fun language() {
   auth.setLanguageCode("es")
  }
-  fun login(email:String, password: String): Task<AuthResult> {
+ suspend fun login(email:String, password: String): Task<AuthResult> {
   return auth.signInWithEmailAndPassword(email, password)
  }
 

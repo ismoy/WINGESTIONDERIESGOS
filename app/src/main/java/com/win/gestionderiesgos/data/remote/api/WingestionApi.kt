@@ -3,6 +3,7 @@ package com.win.gestionderiesgos.data.remote.api
 import com.win.gestionderiesgos.domain.model.Users
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Path
 
@@ -11,5 +12,8 @@ interface WingestionApi {
 
     @PATCH("Clients/{uidUser}.json")
     suspend fun registerClient(@Path("uidUser") uidUser:String , @Body param: Users): Response<Users>
+
+    @GET("Clients/{uidUser}.json")
+    suspend fun getOnlyUser(@Path("uidUser") uidUser:String):Response<Users>
 
 }
