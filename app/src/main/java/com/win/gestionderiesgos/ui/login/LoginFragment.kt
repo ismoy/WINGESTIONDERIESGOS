@@ -13,16 +13,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.win.gestionderiesgos.R
+import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.databinding.FragmentLoginBinding
 import com.win.gestionderiesgos.presentation.login.LoginViewModel
 import com.win.gestionderiesgos.presentation.register.RegisterViewModel
 import com.win.gestionderiesgos.ui.home.HomeActivity
+import com.win.gestionderiesgos.ui.registerFuncion.RegisterFuncionActivity
 import com.win.gestionderiesgos.utils.ShowDialog
 
 class LoginFragment : Fragment() {
     private var binding:FragmentLoginBinding?=null
     private lateinit var navController: NavController
     private lateinit var mShowDialog: ShowDialog
+    private lateinit var mAuthProvider: AuthProvider
     private  val viewModel by lazy { ViewModelProvider(this)[LoginViewModel::class.java] }
     override fun onCreateView(
         inflater: LayoutInflater , container: ViewGroup? ,
@@ -31,6 +34,7 @@ class LoginFragment : Fragment() {
         binding =FragmentLoginBinding.inflate(inflater,container,false)
         validateRealTime()
         mShowDialog = ShowDialog(requireContext())
+        mAuthProvider = AuthProvider()
         return binding!!.root
     }
 
@@ -102,9 +106,26 @@ class LoginFragment : Fragment() {
        viewModel.responseLoginRepository.observe(viewLifecycleOwner, Observer {
         it.addOnCompleteListener { task->
             if (task.isSuccessful){
-                startActivity(Intent(requireContext(),HomeActivity::class.java))
-                requireActivity().finish()
-                mShowDialog.dismissDialog()
+                if (mAuthProvider.existSession()){
+                    viewModel.getOnlyUser(mAuthProvider.getId().toString())
+                }
+                viewModel.responseUsers.observe(viewLifecycleOwner, Observer { user->
+                    if (user.isSuccessful){
+                        if (user.body()?.role==1){
+                            startActivity(Intent(requireContext(),RegisterFuncionActivity::class.java))
+                            requireActivity().finish()
+                            mShowDialog.dismissDialog()
+                        }else{
+                            startActivity(Intent(requireContext(),HomeActivity::class.java))
+                            requireActivity().finish()
+                            mShowDialog.dismissDialog()
+                        }
+                    }else{
+                        Toast.makeText(requireContext() , user.errorBody().toString() , Toast.LENGTH_SHORT).show()
+                        mShowDialog.dismissDialog()
+                    }
+                })
+
             }else{
                 Toast.makeText(requireContext(), it.exception?.message, Toast.LENGTH_LONG).show()
                 mShowDialog.dismissDialog()
