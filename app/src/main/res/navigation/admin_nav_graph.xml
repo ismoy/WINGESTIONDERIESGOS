@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/admin_nav_graph"
-    app:startDestination="@id/listFuscionsProjectFragment">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.win.gestionderiesgos.ui.home.HomeFragment"
@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homeFragment_to_listFuscionsProjectFragment"
             app:destination="@id/listFuscionsProjectFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_registerRiskFragment"
+            app:destination="@id/registerRiskFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFuncionFragment"
@@ -56,6 +59,15 @@
         tools:layout="@layout/fragment_list_fuscions_project" >
         <action
             android:id="@+id/action_listFuscionsProjectFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerRiskFragment"
+        android:name="com.win.gestionderiesgos.ui.fragment.registerRisk.RegisterRiskFragment"
+        android:label="fragment_register_risk"
+        tools:layout="@layout/fragment_register_risk" >
+        <action
+            android:id="@+id/action_registerRiskFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -2,12 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_registerActivityFragment"
+        android:id="@+id/fragment_register_activity"
         android:title="Registrar Actividades "
         />
 
     <item
-        android:id="@+id/nav_registerFuncionFragment"
+        android:id="@+id/fragment_register_funcion"
         android:title="Registrar Funcion" />
-
+    <item
+        android:id="@+id/fragment_register_risk"
+        android:title="Registrar Riesgo" />
 </menu>
