@@ -1,4 +1,4 @@
-package com.win.gestionderiesgos.ui
+package com.win.gestionderiesgos.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btntplanta"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:text="PLANTA" />
+
+  <ProgressBar
+      android:id="@+id/progress"
+      android:layout_alignParentEnd="true"
+      android:layout_width="120dp"
+      android:layout_height="120dp"
+      android:indeterminate="false"
+      android:indeterminateOnly="false"
+      tools:progress="60"
+      android:progressDrawable="@drawable/circle_pg"
+      android:layout_gravity="end"/>
+</RelativeLayout>

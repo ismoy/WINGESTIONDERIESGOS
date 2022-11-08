@@ -1,4 +1,4 @@
-package com.win.gestionderiesgos.ui.registerFuncion
+package com.win.gestionderiesgos.ui.activity.registerFuncion
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,4 +9,5 @@ class RegisterFuncionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_funcion)
     }
+
 }
