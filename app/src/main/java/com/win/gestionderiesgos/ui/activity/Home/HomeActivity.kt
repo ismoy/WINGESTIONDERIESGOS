@@ -57,11 +57,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
             when (item.itemId) {
-                R.id.nav_registerFuncionFragment -> navController.navigate(R.id.action_homeFragment_to_registerFuncionFragment)
-                R.id.nav_registerActivityFragment->navController.navigate(R.id.action_homeFragment_to_registerActivityFragment)
+                R.id.fragment_register_funcion -> navController.navigate(R.id.action_homeFragment_to_registerFuncionFragment)
+                R.id.fragment_register_activity->navController.navigate(R.id.action_homeFragment_to_registerActivityFragment)
+                R.id.fragment_register_risk->navController.navigate(R.id.action_homeFragment_to_registerRiskFragment)
             }
             drawerLayout.closeDrawer(GravityCompat.START)
-
         return true
 
     }
