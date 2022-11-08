@@ -1,4 +1,4 @@
-package com.win.gestionderiesgos.ui.register
+package com.win.gestionderiesgos.ui.fragment.register
 
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable

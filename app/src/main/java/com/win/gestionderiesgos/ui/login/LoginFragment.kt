@@ -16,9 +16,8 @@ import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.databinding.FragmentLoginBinding
 import com.win.gestionderiesgos.presentation.login.LoginViewModel
-import com.win.gestionderiesgos.presentation.register.RegisterViewModel
-import com.win.gestionderiesgos.ui.home.HomeActivity
-import com.win.gestionderiesgos.ui.registerFuncion.RegisterFuncionActivity
+import com.win.gestionderiesgos.ui.activity.Home.HomeActivity
+import com.win.gestionderiesgos.ui.activity.registerFuncion.RegisterFuncionActivity
 import com.win.gestionderiesgos.utils.ShowDialog
 
 class LoginFragment : Fragment() {
@@ -112,11 +111,11 @@ class LoginFragment : Fragment() {
                 viewModel.responseUsers.observe(viewLifecycleOwner, Observer { user->
                     if (user.isSuccessful){
                         if (user.body()?.role==1){
-                            startActivity(Intent(requireContext(),RegisterFuncionActivity::class.java))
+                            startActivity(Intent(requireContext(), HomeActivity::class.java))
                             requireActivity().finish()
                             mShowDialog.dismissDialog()
                         }else{
-                            startActivity(Intent(requireContext(),HomeActivity::class.java))
+                            startActivity(Intent(requireContext(), HomeActivity::class.java))
                             requireActivity().finish()
                             mShowDialog.dismissDialog()
                         }

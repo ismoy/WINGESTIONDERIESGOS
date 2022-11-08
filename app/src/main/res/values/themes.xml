@@ -13,4 +13,5 @@
         <item name="colorPrimary">@color/colorSecondary</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
     </style>
+
 </resources>

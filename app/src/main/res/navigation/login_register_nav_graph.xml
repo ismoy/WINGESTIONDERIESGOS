@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.win.gestionderiesgos.ui.register.RegisterFragment"
+        android:name="com.win.gestionderiesgos.ui.fragment.register.RegisterFragment"
         android:label="REGISTRAR"
         tools:layout="@layout/fragment_register" >
         <action
