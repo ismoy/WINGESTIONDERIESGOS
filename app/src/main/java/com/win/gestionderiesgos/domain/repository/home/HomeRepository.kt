@@ -11,10 +11,10 @@ import com.win.gestionderiesgos.domain.model.Project
 class HomeRepository {
     private val getProject by lazy { ProjectListProvider() }
 
-    suspend fun getProject(): LiveData<List<Project>> {
+    suspend fun getProject(idUser:String): LiveData<List<Project>> {
 
         val mutableLiveData = MutableLiveData<List<Project>>()
-        getProject.getProject()?.addValueEventListener(object : ValueEventListener {
+        getProject.getProject()?.orderByChild("idUserAsign")?.equalTo(idUser)?.addValueEventListener(object : ValueEventListener {
             val listProject = mutableListOf<Project>()
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){

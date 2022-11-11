@@ -1,6 +1,7 @@
 package com.win.gestionderiesgos.ui.fragment.listFuscionsProject
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +15,13 @@ import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.databinding.FragmentListFuscionsProjectBinding
 import com.win.gestionderiesgos.presentation.home.HomeViewModel
 import com.win.gestionderiesgos.presentation.login.LoginViewModel
+import com.win.gestionderiesgos.presentation.registerFuncions.RegisterFuncionsViewModel
 import com.win.gestionderiesgos.utils.Constants
 
 class ListFuscionsProjectFragment : Fragment() {
  private lateinit var binding:FragmentListFuscionsProjectBinding
  private lateinit var listFuncionsAdapter: ListFuncionsAdapter
-    private  val viewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
+    private  val viewModel by lazy { ViewModelProvider(this)[RegisterFuncionsViewModel::class.java] }
     private  val viewModelMain by lazy { ViewModelProvider(this)[LoginViewModel::class.java] }
     private lateinit var mAuthProvider:AuthProvider
 
@@ -49,8 +51,8 @@ class ListFuscionsProjectFragment : Fragment() {
         viewModelMain.responseUsers.observe(viewLifecycleOwner, Observer { user->
             if (user.isSuccessful){
                 if (user.body()?.role =="Cliente"){
-                    viewModel.getProject()
-                    viewModel.responseGetProject.observe(viewLifecycleOwner, Observer {
+                    viewModel.getFuncions()
+                    viewModel.getFuncions().observe(viewLifecycleOwner, Observer {
                         if (it.isNotEmpty()){
                             listFuncionsAdapter.setData(it)
                         }

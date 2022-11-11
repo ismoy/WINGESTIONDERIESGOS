@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
         viewModelMain.responseUsers.observe(viewLifecycleOwner, Observer { user->
             if (user.isSuccessful){
                 if (user.body()?.role =="Cliente"){
-                    viewModel.getProject()
+                    viewModel.getProject(mAuthProvider.getId().toString())
                     viewModel.responseGetProject.observe(viewLifecycleOwner, Observer {
                         if (it.isNotEmpty()){
                             projectAdapter.setData(it)
