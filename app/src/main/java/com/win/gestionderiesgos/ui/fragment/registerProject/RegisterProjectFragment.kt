@@ -106,7 +106,7 @@ class RegisterProjectFragment : Fragment() {
     private fun createProject() {
         val project= selected?.let {
             Project(binding.nameProject.text.toString(),binding.initialDate.text.toString(),binding.endDate.text.toString(),
-                it ,mAuthProvider.getId().toString(),Constants.CURRENTTIME.toString())
+                it ,mAuthProvider.getId().toString(),Constants.CURRENTTIME.toString(),0)
         }
         binding.apply {
                 when {
