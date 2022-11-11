@@ -12,4 +12,6 @@
     <item
         android:id="@+id/fragment_register_risk"
         android:title="Registrar Riesgo" />
+    <item android:id="@+id/fragment_register_project"
+        android:title="Crear Proyecto"/>
 </menu>

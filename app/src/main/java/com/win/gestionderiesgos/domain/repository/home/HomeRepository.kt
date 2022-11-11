@@ -21,8 +21,8 @@ class HomeRepository {
                     for (ds in snapshot.children){
                         val name =ds.child("name").value.toString()
                         val percentQuantity =ds.child("percentQuantity").value.toString()
-                        val listas =Project(name,percentQuantity.toInt())
-                        listProject.add(listas)
+                        //val listas =Project(name,percentQuantity.toInt())
+                      //  listProject.add(listas)
                     }
                     mutableLiveData.value =listProject
                 }

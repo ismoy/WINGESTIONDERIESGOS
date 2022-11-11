@@ -114,6 +114,25 @@
                     android:background="@drawable/btn_rounded"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutdrop"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:helperTextTextColor="@color/design_default_color_error"
+                android:layout_marginHorizontal="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutinitialDate">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextViewrole"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="seleccione Role"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"

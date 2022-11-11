@@ -60,6 +60,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_register_funcion -> navController.navigate(R.id.action_homeFragment_to_registerFuncionFragment)
                 R.id.fragment_register_activity->navController.navigate(R.id.action_homeFragment_to_registerActivityFragment)
                 R.id.fragment_register_risk->navController.navigate(R.id.action_homeFragment_to_registerRiskFragment)
+                R.id.fragment_register_project->navController.navigate(R.id.action_homeFragment_to_registerProjectFragment)
             }
             drawerLayout.closeDrawer(GravityCompat.START)
         return true

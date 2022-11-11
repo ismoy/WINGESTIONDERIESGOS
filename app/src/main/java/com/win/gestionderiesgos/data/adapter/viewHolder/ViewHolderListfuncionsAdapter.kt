@@ -15,7 +15,7 @@ class ViewHolderListfuncionsAdapter(view: View): RecyclerView.ViewHolder(view){
             btntplanta.text =currentList.name
         }
         if (progr <= 90){
-            progr +=currentList.percentQuantity
+          //  progr +=currentList.percentQuantity
             updateProgressBar()
         }
     }
