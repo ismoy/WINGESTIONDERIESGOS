@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
     android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btntplanta"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:text="PLANTA" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-  <ProgressBar
-      android:id="@+id/progress"
-      android:layout_alignParentEnd="true"
-      android:layout_width="120dp"
-      android:layout_height="120dp"
-      android:indeterminate="false"
-      android:indeterminateOnly="false"
-      tools:progress="60"
-      android:progressDrawable="@drawable/circle_pg"
-      android:layout_gravity="end"/>
-</RelativeLayout>
+        <Button
+            android:id="@+id/btntplanta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="PLANTA"
+            android:background="@drawable/bg_plants"/>
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:layout_marginStart="150dp"
+            android:indeterminateOnly="false"
+            tools:progress="60"
+            android:progressDrawable="@drawable/circle_pg"
+            android:layout_gravity="end"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</LinearLayout>
