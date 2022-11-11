@@ -12,9 +12,9 @@ class HomeViewModel:ViewModel() {
    private val repository:HomeRepository = HomeRepository()
     val responseGetProject = MutableLiveData<List<Project>>()
 
-    fun getProject():LiveData<List<Project>> {
+    fun getProject(idUser:String):LiveData<List<Project>> {
         viewModelScope.launch {
-            repository.getProject().observeForever {
+            repository.getProject(idUser).observeForever {
                 responseGetProject.value =it
             }
         }

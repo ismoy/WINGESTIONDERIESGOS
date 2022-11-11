@@ -10,7 +10,7 @@ import com.win.gestionderiesgos.domain.model.Funcions
 import com.win.gestionderiesgos.domain.model.Project
 
 class ListFuncionsAdapter :RecyclerView.Adapter<ViewHolderListfuncionsAdapter>()  {
-    private var listfuncions = emptyList<Project>()
+    private var listfuncions = emptyList<Funcions>()
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): ViewHolderListfuncionsAdapter {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_funcions,parent,false)
         return ViewHolderListfuncionsAdapter(view)
@@ -24,7 +24,7 @@ class ListFuncionsAdapter :RecyclerView.Adapter<ViewHolderListfuncionsAdapter>()
     override fun getItemCount() =listfuncions.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<Project>) {
+    fun setData(list: List<Funcions>) {
         this.listfuncions = list
         notifyDataSetChanged()
     }
