@@ -25,8 +25,8 @@ class HomeRepository {
                         val idUserAsign =ds.child("idUserAsign").value.toString()
                         val idAdmin =ds.child("idAdmin").value.toString()
                         val dateCreated =ds.child("dateCreated").value.toString()
-                        //val percentQuantity =ds.child("percentQuantity").value.toString()
-                        val listas =Project(name,initialDate, endDate, idUserAsign, idAdmin, dateCreated)
+                        val QuantityPercent =ds.child("QuantityPercent").value.toString()
+                        val listas =Project(name,initialDate, endDate, idUserAsign, idAdmin, dateCreated,QuantityPercent.toInt())
                         listProject.add(listas)
                     }
                     mutableLiveData.value =listProject

@@ -54,8 +54,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onClickItem(project: Project) {
-       // requireActivity().intent.putExtra("project",project.percentQuantity)
-      //navController.navigate(R.id.action_homeFragment_to_listFuscionsProjectFragment)
+        requireActivity().intent.putExtra("project",project.QuantityPercent)
     }
 
     private fun setUpRecyclerView() {
