@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 
  class getFunciosProvider {
-    var mDatabase:DatabaseReference?= FirebaseDatabase.getInstance().reference.child("Admin").child("Funcions")
+    var mDatabase:DatabaseReference?= FirebaseDatabase.getInstance().reference.child("Admin").child("Proyectos").child("Fusion")
 
      fun getFuncions(): DatabaseReference? {
         return mDatabase

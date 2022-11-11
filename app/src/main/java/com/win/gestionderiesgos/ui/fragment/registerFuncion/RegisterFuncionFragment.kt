@@ -58,15 +58,23 @@ class RegisterFuncionFragment : Fragment() {
         val currentTime = Calendar.getInstance().time
        val funcions =Funcions(tvfuncions.uppercase(Locale.ROOT),mAuthProvider.getId().toString(),currentTime.toString())
         viewModel.registerFuncions(funcions)
-        viewModel.responseFuncions.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            if(it.isSuccessful){
-                Toast.makeText(requireContext() , "Se registro correctamente la funcion" , Toast.LENGTH_SHORT).show()
+        viewModel.responseFuncions.observe(viewLifecycleOwner) {
+            if (it.isSuccessful) {
+                Toast.makeText(
+                    requireContext() ,
+                    "Se registro correctamente la funcion" ,
+                    Toast.LENGTH_SHORT
+                ).show()
                 mShowDialog.dismissDialog()
-            }else{
-                Toast.makeText(requireContext() , "No se puede registrar la funcion" , Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    requireContext() ,
+                    "No se puede registrar la funcion" ,
+                    Toast.LENGTH_SHORT
+                ).show()
                 mShowDialog.dismissDialog()
             }
-        })
+        }
     }
 
     private fun validateRealTime() {

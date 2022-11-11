@@ -15,10 +15,10 @@ interface WingestionApi {
     @GET("Clients/{uidUser}.json")
     suspend fun getOnlyUser(@Path("uidUser") uidUser:String):Response<Users>
 
-    @POST("Admin/Funcions.json")
+    @POST("Admin/Proyectos/Fusion.json")
     suspend fun registerFuncions(@Body funcions: Funcions): Response<Funcions>
 
-    @POST("Admin/Actividad.json")
+    @POST("Admin/Proyectos/Fusion/Actividad.json")
     suspend fun createActivity(@Body actividad: Actividad):Response<Actividad>
     @POST("Admin/Riesgo.json")
     suspend fun createRisk(@Body risk: Risk):Response<Risk>
