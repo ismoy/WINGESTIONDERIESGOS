@@ -20,7 +20,7 @@ interface WingestionApi {
 
     @POST("Admin/Proyectos/Fusion/Actividad.json")
     suspend fun createActivity(@Body actividad: Actividad):Response<Actividad>
-    @POST("Admin/Riesgo.json")
+    @POST("Admin/Proyectos/Fusion/Actividad/Riesgo.json")
     suspend fun createRisk(@Body risk: Risk):Response<Risk>
 
     @POST("Admin/Proyectos.json")
