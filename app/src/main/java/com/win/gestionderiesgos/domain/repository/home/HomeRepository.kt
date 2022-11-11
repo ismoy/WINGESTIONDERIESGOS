@@ -20,9 +20,14 @@ class HomeRepository {
                 if (snapshot.exists()){
                     for (ds in snapshot.children){
                         val name =ds.child("name").value.toString()
-                        val percentQuantity =ds.child("percentQuantity").value.toString()
-                        //val listas =Project(name,percentQuantity.toInt())
-                      //  listProject.add(listas)
+                        val initialDate =ds.child("initialDate").value.toString()
+                        val endDate =ds.child("endDate").value.toString()
+                        val idUserAsign =ds.child("idUserAsign").value.toString()
+                        val idAdmin =ds.child("idAdmin").value.toString()
+                        val dateCreated =ds.child("dateCreated").value.toString()
+                        //val percentQuantity =ds.child("percentQuantity").value.toString()
+                        val listas =Project(name,initialDate, endDate, idUserAsign, idAdmin, dateCreated)
+                        listProject.add(listas)
                     }
                     mutableLiveData.value =listProject
                 }
