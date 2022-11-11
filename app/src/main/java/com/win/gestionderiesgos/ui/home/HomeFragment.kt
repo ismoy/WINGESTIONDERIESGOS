@@ -16,6 +16,7 @@ import com.win.gestionderiesgos.databinding.FragmentHomeBinding
 import com.win.gestionderiesgos.domain.model.Project
 import com.win.gestionderiesgos.presentation.home.HomeViewModel
 import com.win.gestionderiesgos.presentation.login.LoginViewModel
+import com.win.gestionderiesgos.utils.Constants
 import com.win.gestionderiesgos.utils.Constants.ROLE
 
 
@@ -52,7 +53,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onClickItem(project: Project) {
-        requireActivity().intent.putExtra("project",project.percentQuantity)
+       // requireActivity().intent.putExtra("project",project.percentQuantity)
       //navController.navigate(R.id.action_homeFragment_to_listFuscionsProjectFragment)
     }
 
@@ -60,6 +61,7 @@ class HomeFragment : Fragment() {
         viewModelMain.getOnlyUser(mAuthProvider.getId().toString())
         viewModelMain.responseUsers.observe(viewLifecycleOwner, Observer { user->
             if (user.isSuccessful){
+                Constants.setValueSharedPreferences(requireActivity(),"ROLE",user.body()?.role.toString())
                 ROLE =user.body()!!.role.toString()
                 if (user.body()?.role ==0){
                     viewModel.getProject()

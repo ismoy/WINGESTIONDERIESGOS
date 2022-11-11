@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_registerRiskFragment"
             app:destination="@id/registerRiskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_registerProjectFragment"
+            app:destination="@id/registerProjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFuncionFragment"
@@ -68,6 +71,15 @@
         tools:layout="@layout/fragment_register_risk" >
         <action
             android:id="@+id/action_registerRiskFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerProjectFragment"
+        android:name="com.win.gestionderiesgos.ui.fragment.registerProject.RegisterProjectFragment"
+        android:label="fragment_register_project"
+        tools:layout="@layout/fragment_register_project" >
+        <action
+            android:id="@+id/action_registerProjectFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -1,9 +1,6 @@
 package com.win.gestionderiesgos.data.remote.api
 
-import com.win.gestionderiesgos.domain.model.Actividad
-import com.win.gestionderiesgos.domain.model.Funcions
-import com.win.gestionderiesgos.domain.model.Risk
-import com.win.gestionderiesgos.domain.model.Users
+import com.win.gestionderiesgos.domain.model.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -23,4 +20,7 @@ interface WingestionApi {
     suspend fun createActivity(@Body actividad: Actividad):Response<Actividad>
     @POST("Admin/Riesgo.json")
     suspend fun createRisk(@Body risk: Risk):Response<Risk>
+
+    @POST("Admin/Proyectos.json")
+    suspend fun createProject(@Body project: Project):Response<Project>
 }

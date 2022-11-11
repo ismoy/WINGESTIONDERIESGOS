@@ -13,7 +13,7 @@ class ViewHolderListProjectAdapter(view: View):RecyclerView.ViewHolder(view) {
     fun renderListProject(currentList: Project , onClickListener:(Project) -> Unit) {
        binding.apply {
            nameProject.text =currentList.name
-           percente.text ="${currentList.percentQuantity}%"
+         //  percente.text ="${currentList.percentQuantity}%"
        }
         itemView.setOnClickListener {
             onClickListener(currentList)
