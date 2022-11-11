@@ -8,4 +8,8 @@ class RegisterRepository {
     suspend fun register(uidUser: String?, users: Users): Response<Users> {
         return RetrofitInstance.wingestionApi.registerClient(uidUser!!, users)
     }
+
+    suspend fun registerAdmin(uidUser: String?, users: Users): Response<Users> {
+        return RetrofitInstance.wingestionApi.registerAdmin(uidUser!!, users)
+    }
 }

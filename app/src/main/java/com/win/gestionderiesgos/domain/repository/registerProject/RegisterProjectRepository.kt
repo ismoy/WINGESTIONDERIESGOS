@@ -30,7 +30,8 @@ class RegisterProjectRepository {
                             val password =ds.child("password").value.toString()
                             val role =ds.child("role").value.toString()
                             val idUser =ds.child("idUser").value.toString()
-                            val listas =Users(idUser,email,completeName,userName,password,role.toInt())
+                            val status =ds.child("status").value.toString()
+                            val listas =Users(idUser,email,completeName,userName,password,role,status.toInt())
                             listUsers.add(listas)
                         }
                         mutableLiveData.value =listUsers

@@ -62,8 +62,7 @@ class HomeFragment : Fragment() {
         viewModelMain.responseUsers.observe(viewLifecycleOwner, Observer { user->
             if (user.isSuccessful){
                 Constants.setValueSharedPreferences(requireActivity(),"ROLE",user.body()?.role.toString())
-                ROLE =user.body()!!.role.toString()
-                if (user.body()?.role ==0){
+                if (user.body()?.role =="Cliente"){
                     viewModel.getProject()
                     viewModel.responseGetProject.observe(viewLifecycleOwner, Observer {
                         if (it.isNotEmpty()){

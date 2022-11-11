@@ -9,6 +9,8 @@ interface WingestionApi {
 
     @PATCH("Clients/{uidUser}.json")
     suspend fun registerClient(@Path("uidUser") uidUser:String , @Body param: Users): Response<Users>
+    @PATCH("Admin/{uidUser}.json")
+    suspend fun registerAdmin(@Path("uidUser") uidUser:String , @Body param: Users): Response<Users>
 
     @GET("Clients/{uidUser}.json")
     suspend fun getOnlyUser(@Path("uidUser") uidUser:String):Response<Users>

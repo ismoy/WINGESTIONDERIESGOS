@@ -110,7 +110,7 @@ class LoginFragment : Fragment() {
                 }
                 viewModel.responseUsers.observe(viewLifecycleOwner, Observer { user->
                     if (user.isSuccessful){
-                        if (user.body()?.role==1){
+                        if (user.body()?.role=="Administrador"){
                             startActivity(Intent(requireContext(), HomeActivity::class.java))
                             requireActivity().finish()
                             mShowDialog.dismissDialog()
