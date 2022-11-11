@@ -3,12 +3,14 @@ package com.win.gestionderiesgos.ui.register
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -29,6 +31,7 @@ class RegisterFragment : Fragment() {
     private  val viewModel by lazy { ViewModelProvider(this)[RegisterViewModel::class.java] }
     private lateinit var navController: NavController
     private lateinit var dialog: Dialog
+    private var selected:String?=null
     override fun onCreateView(
         inflater: LayoutInflater , container: ViewGroup? ,
         savedInstanceState: Bundle?
@@ -46,6 +49,7 @@ class RegisterFragment : Fragment() {
             register()
         }
         validateRealTime()
+        setUpDataInSpinner()
     }
 
     private fun validateRealTime() {
@@ -115,17 +119,19 @@ class RegisterFragment : Fragment() {
 
     private fun register() {
         binding.apply {
-            if(emailRegister.text.toString().isEmpty() && nameComplete.text.toString().isEmpty() && username.text.toString().isEmpty() && passwordRegister.text.toString().isEmpty()){
+            if(emailRegister.text.toString().isEmpty() && nameComplete.text.toString().isEmpty() && username.text.toString().isEmpty() && passwordRegister.text.toString().isEmpty() && autocompleterole.text.isEmpty()){
                 layoutRegister.helperText =getString(R.string.erroremptyfield)
                 layoutCompleteName.helperText =getString(R.string.erroremptyfield)
                 layoutUsername.helperText =getString(R.string.erroremptyfield)
                 layoutPassword.helperText =getString(R.string.erroremptyfield)
+                layoutrole.helperText =getString(R.string.erroremptyfield)
                 btnRegister.isEnabled = false
             }else{
                 layoutRegister.helperText =""
                 layoutCompleteName.helperText =""
                 layoutUsername.helperText =""
                 layoutPassword.helperText =""
+                layoutrole.helperText =""
                 btnRegister.isEnabled = true
                 createUserAuthentificationWithFirebase(emailRegister.text.toString(),passwordRegister.text.toString())
             }
@@ -145,6 +151,15 @@ class RegisterFragment : Fragment() {
 
     }
 
+    private fun setUpDataInSpinner() {
+        val arraylist = listOf("Cliente","Admin")
+        val  adapterItems = ArrayAdapter(requireContext(),R.layout.dropdown_item,arraylist)
+        binding.autocompleterole.setAdapter(adapterItems)
+        binding.autocompleterole.setOnItemClickListener { adapterView, view, i, l ->
+            selected =adapterView.getItemAtPosition(i).toString()
+            Log.d("seleciono",selected.toString())
+        }
+    }
     private fun registerUserInDatatabase(email: String , nameComplete: String , userName: String , password: String) {
         dialog.setContentView(R.layout.dialog_loading)
         dialog.setCancelable(false)
@@ -152,8 +167,13 @@ class RegisterFragment : Fragment() {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         }
         dialog.show()
-        val saveData =Users(email,nameComplete,userName,password,0)
-        viewModel.register(mAuthProvider.getId().toString(),saveData)
+        val saveData = selected?.let {
+            Users(mAuthProvider.getId().toString(),email,nameComplete,userName,password,
+                it ,0)
+        }
+        if (saveData != null) {
+            viewModel.register(mAuthProvider.getId().toString(),saveData)
+        }
         viewModel.responseRegister.observe(viewLifecycleOwner, Observer {response->
          if (response.isSuccessful){
              Toast.makeText(requireContext() , "La cuenta fue creada con exito" , Toast.LENGTH_SHORT).show()

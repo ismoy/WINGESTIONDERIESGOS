@@ -2,12 +2,12 @@ package com.win.gestionderiesgos.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -16,7 +16,6 @@ import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.databinding.FragmentLoginBinding
 import com.win.gestionderiesgos.presentation.login.LoginViewModel
-import com.win.gestionderiesgos.presentation.register.RegisterViewModel
 import com.win.gestionderiesgos.ui.home.HomeActivity
 import com.win.gestionderiesgos.ui.registerFuncion.RegisterFuncionActivity
 import com.win.gestionderiesgos.utils.ShowDialog
@@ -111,7 +110,7 @@ class LoginFragment : Fragment() {
                 }
                 viewModel.responseUsers.observe(viewLifecycleOwner, Observer { user->
                     if (user.isSuccessful){
-                        if (user.body()?.role==1){
+                        if (user.body()?.role=="Admin"){
                             startActivity(Intent(requireContext(),RegisterFuncionActivity::class.java))
                             requireActivity().finish()
                             mShowDialog.dismissDialog()
