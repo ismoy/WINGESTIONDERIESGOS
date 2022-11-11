@@ -26,7 +26,8 @@ class RegisterFuncionRepository {
                         val name =ds.child("name").value.toString()
                         val idUser =ds.child("idUser").value.toString()
                         val dateCreated =ds.child("dateCreated").value.toString()
-                        val listas =Funcions(name,idUser, dateCreated)
+                        val QuantityPercent=ds.child("QuantityPercent").value.toString()
+                        val listas =Funcions(name,idUser, dateCreated,QuantityPercent.toInt())
                         listFuncions.add(listas)
                     }
                     mutableLiveData.value =listFuncions
