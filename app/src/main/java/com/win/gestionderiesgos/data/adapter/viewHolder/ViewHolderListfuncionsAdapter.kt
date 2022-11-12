@@ -13,19 +13,20 @@ class ViewHolderListfuncionsAdapter(view: View): RecyclerView.ViewHolder(view){
     private var progr = 0
     fun renderListfuncions(currentList: FusionList) {
 
-       // updateProgressBar()
+        updateProgressBar()
 
         if (currentList.name.contains("null")){
             binding.relativecontainer.visibility=View.GONE
+        }else{
+            val quantityPercent =currentList.QuantityPercent.toInt()
+            if (progr <= 90){
+                progr +=quantityPercent
+                updateProgressBar()
+            }
         }
         binding.apply {
             btntplanta.text =currentList.name
         }
-            if (progr <= 90){
-          // progr +=currentList.QuantityPercent
-           updateProgressBar()
-       }
-
 
     }
 
