@@ -44,7 +44,6 @@ class RegisterActivityFragment : Fragment() {
             if (it.isNotEmpty()){
                 setUpDataInSpinner(it)
             }
-
         })
     }
 
@@ -64,7 +63,7 @@ class RegisterActivityFragment : Fragment() {
                 binding.layoutRegisteractivity.helperText =getString(R.string.erroremptyfield)
             }else{
                 binding.layoutRegisteractivity.helperText =""
-                val activity=Actividad(selected,binding.registerActivity.text.toString(),mAuthProvider.getId().toString(),CURRENTTIME.toString())
+                val activity=Actividad(selected,binding.registerActivity.text.toString(),mAuthProvider.getId().toString(),CURRENTTIME.toString(),"0","0")
                 viewModelRegisterActivity.createActivity(activity)
                 viewModelRegisterActivity.responseActivity.observe(viewLifecycleOwner, Observer {
                     if (it.isSuccessful){
