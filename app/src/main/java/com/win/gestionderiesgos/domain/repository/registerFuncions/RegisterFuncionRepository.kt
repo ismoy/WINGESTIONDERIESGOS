@@ -19,7 +19,7 @@ class RegisterFuncionRepository {
 
      fun getFuncions(): LiveData<List<Funcions>> {
         val mutableLiveData =MutableLiveData<List<Funcions>>()
-        getFuncions.getFuncions()?.addValueEventListener(object : ValueEventListener{
+        getFuncions.getFuncions()?.addListenerForSingleValueEvent(object : ValueEventListener{
             val listFuncions = mutableListOf<Funcions>()
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
@@ -45,7 +45,7 @@ class RegisterFuncionRepository {
 
     fun getFusionList(): LiveData<List<FusionList>> {
         val mutableLiveDataList =MutableLiveData<List<FusionList>>()
-        getFuncions.getFuncions()?.addValueEventListener(object : ValueEventListener{
+        getFuncions.getFuncions()?.addListenerForSingleValueEvent(object : ValueEventListener{
             val listFuncions = mutableListOf<FusionList>()
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){

@@ -19,7 +19,7 @@ class RegisterProjectRepository {
 
     suspend fun getListUsers():LiveData<List<Users>> {
             val mutableLiveData = MutableLiveData<List<Users>>()
-            getListUser.getListUser()?.addValueEventListener(object : ValueEventListener {
+            getListUser.getListUser()?.addListenerForSingleValueEvent(object : ValueEventListener {
                 val listUsers= mutableListOf<Users>()
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()){

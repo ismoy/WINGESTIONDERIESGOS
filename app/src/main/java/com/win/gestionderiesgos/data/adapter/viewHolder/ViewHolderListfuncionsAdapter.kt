@@ -1,8 +1,11 @@
 package com.win.gestionderiesgos.data.adapter.viewHolder
 
+import android.app.Activity
 import android.util.Log
 import android.view.View
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.databinding.ItemListFuncionsBinding
 import com.win.gestionderiesgos.domain.model.Funcions
 import com.win.gestionderiesgos.domain.model.FusionList
@@ -27,10 +30,16 @@ class ViewHolderListfuncionsAdapter(view: View): RecyclerView.ViewHolder(view){
         binding.apply {
             btntplanta.text =currentList.name
         }
-
+        itemView.setOnClickListener {
+            Navigation.findNavController(binding.btntplanta.context as Activity , R.id.container_fragment).navigate(
+                R.id.action_listFuscionsProjectFragment_to_detailsFusionsActivityFragment)
+            (binding.btntplanta.context as Activity).intent.putExtra("NameFusion",currentList.name)
+            (binding.btntplanta.context as Activity).intent.putExtra("QuantityPercentFusion",currentList.QuantityPercent)
+        }
     }
 
     private fun updateProgressBar(){
         binding.progress.progress=progr
     }
+
 }
