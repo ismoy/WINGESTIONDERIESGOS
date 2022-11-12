@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.adapter.viewHolder.ViewHolderListfuncionsAdapter
 import com.win.gestionderiesgos.domain.model.Funcions
+import com.win.gestionderiesgos.domain.model.FusionList
 import com.win.gestionderiesgos.domain.model.Project
 
 class ListFuncionsAdapter :RecyclerView.Adapter<ViewHolderListfuncionsAdapter>()  {
-    private var listfuncions = emptyList<Funcions>()
+    private var listfuncions = emptyList<FusionList>()
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): ViewHolderListfuncionsAdapter {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_funcions,parent,false)
         return ViewHolderListfuncionsAdapter(view)
@@ -24,7 +25,7 @@ class ListFuncionsAdapter :RecyclerView.Adapter<ViewHolderListfuncionsAdapter>()
     override fun getItemCount() =listfuncions.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<Funcions>) {
+    fun setData(list: List<FusionList>) {
         this.listfuncions = list
         notifyDataSetChanged()
     }

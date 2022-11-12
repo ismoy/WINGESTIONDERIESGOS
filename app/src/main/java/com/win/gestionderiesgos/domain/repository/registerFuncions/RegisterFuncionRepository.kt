@@ -8,6 +8,7 @@ import com.google.firebase.database.ValueEventListener
 import com.win.gestionderiesgos.data.remote.api.RetrofitInstance
 import com.win.gestionderiesgos.data.remote.provider.getFunciosProvider
 import com.win.gestionderiesgos.domain.model.Funcions
+import com.win.gestionderiesgos.domain.model.FusionList
 import retrofit2.Response
 
 class RegisterFuncionRepository {
@@ -27,7 +28,7 @@ class RegisterFuncionRepository {
                         val idUser =ds.child("idUser").value.toString()
                         val dateCreated =ds.child("dateCreated").value.toString()
                         val QuantityPercent=ds.child("QuantityPercent").value.toString()
-                        val listas =Funcions(name,idUser, dateCreated,QuantityPercent.toInt())
+                        val listas =Funcions(name,idUser, dateCreated,QuantityPercent)
                         listFuncions.add(listas)
                     }
                     mutableLiveData.value =listFuncions
@@ -39,5 +40,31 @@ class RegisterFuncionRepository {
 
         })
         return mutableLiveData
+    }
+
+
+    fun getFusionList(): LiveData<List<FusionList>> {
+        val mutableLiveDataList =MutableLiveData<List<FusionList>>()
+        getFuncions.getFuncions()?.addValueEventListener(object : ValueEventListener{
+            val listFuncions = mutableListOf<FusionList>()
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    for (ds in snapshot.children){
+                        val name =ds.child("name").value.toString()
+                        val idUser =ds.child("idUser").value.toString()
+                        val dateCreated =ds.child("dateCreated").value.toString()
+                        val QuantityPercent=ds.child("QuantityPercent").value.toString()
+                        val listas =FusionList(name,idUser, dateCreated,QuantityPercent.toInt())
+                        listFuncions.add(listas)
+                    }
+                    mutableLiveDataList.value =listFuncions
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+        return mutableLiveDataList
     }
 }

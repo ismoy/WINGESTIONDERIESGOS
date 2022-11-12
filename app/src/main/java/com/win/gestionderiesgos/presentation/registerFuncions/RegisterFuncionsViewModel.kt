@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.win.gestionderiesgos.domain.model.Funcions
+import com.win.gestionderiesgos.domain.model.FusionList
 import com.win.gestionderiesgos.domain.repository.registerFuncions.RegisterFuncionRepository
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -12,6 +13,7 @@ import retrofit2.Response
 class RegisterFuncionsViewModel:ViewModel() {
     private val repository:RegisterFuncionRepository = RegisterFuncionRepository()
     val responseFuncions :MutableLiveData<Response<Funcions>> by lazy { MutableLiveData() }
+    val responseFusionList :MutableLiveData<List<FusionList>> by lazy { MutableLiveData() }
     val responsegetFuncions = MutableLiveData<List<Funcions>>()
     fun registerFuncions(funcions: Funcions){
         viewModelScope.launch {
@@ -28,5 +30,15 @@ class RegisterFuncionsViewModel:ViewModel() {
 
         }
         return responsegetFuncions
+    }
+
+    fun getFusionsList(): MutableLiveData<List<FusionList>> {
+        viewModelScope.launch {
+            repository.getFusionList().observeForever {
+                responseFusionList.value =it
+            }
+
+        }
+        return responseFusionList
     }
 }

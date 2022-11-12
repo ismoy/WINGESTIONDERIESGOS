@@ -51,8 +51,8 @@ class ListFuscionsProjectFragment : Fragment() {
         viewModelMain.responseUsers.observe(viewLifecycleOwner, Observer { user->
             if (user.isSuccessful){
                 if (user.body()?.role =="Cliente"){
-                    viewModel.getFuncions()
-                    viewModel.getFuncions().observe(viewLifecycleOwner, Observer {
+                    viewModel.getFusionsList()
+                    viewModel.getFusionsList().observe(viewLifecycleOwner, Observer {
                         if (it.isNotEmpty()){
                             listFuncionsAdapter.setData(it)
                         }
