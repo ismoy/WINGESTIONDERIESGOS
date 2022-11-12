@@ -19,9 +19,6 @@
             android:id="@+id/action_homeFragment_to_registerActivityFragment2"
             app:destination="@id/registerActivityFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_listFuscionsProjectFragment"
-            app:destination="@id/listFuscionsProjectFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_registerRiskFragment"
             app:destination="@id/registerRiskFragment" />
         <action
@@ -56,18 +53,6 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/listFuscionsProjectFragment"
-        android:name="com.win.gestionderiesgos.ui.fragment.listFuscionsProject.ListFuscionsProjectFragment"
-        android:label="fragment_list_fuscions_project"
-        tools:layout="@layout/fragment_list_fuscions_project" >
-        <action
-            android:id="@+id/action_listFuscionsProjectFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_listFuscionsProjectFragment_to_detailsFusionsActivityFragment"
-            app:destination="@id/detailsFusionsActivityFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/registerRiskFragment"
         android:name="com.win.gestionderiesgos.ui.fragment.registerRisk.RegisterRiskFragment"
         android:label="fragment_register_risk"
@@ -84,13 +69,5 @@
         <action
             android:id="@+id/action_registerProjectFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailsFusionsActivityFragment"
-        android:name="com.win.gestionderiesgos.ui.fragment.detailsFusionActivity.DetailsFusionsActivityFragment"
-        android:label="DetailsFusionsActivityFragment" >
-        <action
-            android:id="@+id/action_detailsFusionsActivityFragment_to_listFuscionsProjectFragment"
-            app:destination="@id/listFuscionsProjectFragment" />
     </fragment>
 </navigation>

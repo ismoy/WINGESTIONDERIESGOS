@@ -19,7 +19,8 @@ class RegisterProjectRepository {
 
     suspend fun getListUsers():LiveData<List<Users>> {
             val mutableLiveData = MutableLiveData<List<Users>>()
-            getListUser.getListUser()?.addListenerForSingleValueEvent(object : ValueEventListener {
+        getListUser.getListUser()?.orderByChild("role")?.equalTo("Client")
+            ?.addListenerForSingleValueEvent(object : ValueEventListener {
                 val listUsers= mutableListOf<Users>()
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()){
@@ -28,10 +29,8 @@ class RegisterProjectRepository {
                             val completeName =ds.child("completeName").value.toString()
                             val userName =ds.child("userName").value.toString()
                             val password =ds.child("password").value.toString()
-                            val role =ds.child("role").value.toString()
                             val idUser =ds.child("idUser").value.toString()
-                            val status =ds.child("status").value.toString()
-                            val listas =Users(idUser,email,completeName,userName,password,role,status.toInt())
+                            val listas =Users(idUser,email,completeName,userName,password)
                             listUsers.add(listas)
                         }
                         mutableLiveData.value =listUsers

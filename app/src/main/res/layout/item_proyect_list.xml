@@ -6,6 +6,7 @@
     android:padding="16dp"
     android:gravity="center"
     android:layout_margin="16dp"
+    android:id="@+id/linearProject"
     android:background="@drawable/bg_item_ptoject">
 
     <TextView

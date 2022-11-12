@@ -50,16 +50,13 @@ class ListFuscionsProjectFragment : Fragment() {
         viewModelMain.getOnlyUser(mAuthProvider.getId().toString())
         viewModelMain.responseUsers.observe(viewLifecycleOwner, Observer { user->
             if (user.isSuccessful){
-                if (user.body()?.role =="Cliente"){
                     viewModel.getFusionsList()
                     viewModel.getFusionsList().observe(viewLifecycleOwner, Observer {
+                        Log.d("listFusions",it.toString())
                         if (it.isNotEmpty()){
                             listFuncionsAdapter.setData(it)
                         }
                     })
-                }else{
-                    binding.recyclerview.visibility =View.GONE
-                }
             }
         })
 

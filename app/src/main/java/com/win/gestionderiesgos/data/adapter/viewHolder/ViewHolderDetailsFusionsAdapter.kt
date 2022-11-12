@@ -1,5 +1,6 @@
 package com.win.gestionderiesgos.data.adapter.viewHolder
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.remote.provider.GetDetailsFusionActivityProvider
 import com.win.gestionderiesgos.databinding.ItemListActivityBinding
 import com.win.gestionderiesgos.domain.model.Actividad
@@ -25,6 +27,7 @@ class ViewHolderDetailsFusionsAdapter(view: View): RecyclerView.ViewHolder(view)
     private lateinit var detailsProvider:GetDetailsFusionActivityProvider
     private var currentItem:Actividad?=null
 
+    @SuppressLint("ResourceAsColor")
     fun renderDetailsFusionActivity(
         currentList: Actividad ,
         holder: ViewHolderDetailsFusionsAdapter) {
