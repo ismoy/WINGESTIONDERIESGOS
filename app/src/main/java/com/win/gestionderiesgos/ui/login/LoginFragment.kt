@@ -17,6 +17,7 @@ import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.databinding.FragmentLoginBinding
 import com.win.gestionderiesgos.presentation.login.LoginViewModel
 import com.win.gestionderiesgos.ui.activity.Home.HomeActivity
+import com.win.gestionderiesgos.ui.activity.Home.HomeClientActivity
 import com.win.gestionderiesgos.ui.activity.registerFuncion.RegisterFuncionActivity
 import com.win.gestionderiesgos.utils.ShowDialog
 
@@ -110,12 +111,12 @@ class LoginFragment : Fragment() {
                 }
                 viewModel.responseUsers.observe(viewLifecycleOwner, Observer { user->
                     if (user.isSuccessful){
-                        if (user.body()?.role=="Administrador"){
-                            startActivity(Intent(requireContext(), HomeActivity::class.java))
+                        if (user.body()?.role=="Client"){
+                            startActivity(Intent(requireContext(), HomeClientActivity::class.java))
                             requireActivity().finish()
                             mShowDialog.dismissDialog()
                         }else{
-                            startActivity(Intent(requireContext(), HomeActivity::class.java))
+                            startActivity(Intent(requireContext(),HomeActivity ::class.java))
                             requireActivity().finish()
                             mShowDialog.dismissDialog()
                         }

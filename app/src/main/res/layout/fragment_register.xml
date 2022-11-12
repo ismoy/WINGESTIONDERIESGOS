@@ -114,7 +114,7 @@
                     android:background="@drawable/btn_rounded"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+           <!-- <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutdrop"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                     android:layout_height="match_parent"
                     android:hint="seleccione Role"
                     android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>-->
 
             <Button
                 android:id="@+id/btn_register"
