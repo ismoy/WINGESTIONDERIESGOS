@@ -49,12 +49,11 @@ class DetailsFusionsActivityFragment : Fragment() {
             }
             it.forEach { percent->
                 if (percent.QuantityPercent.contains("25") && percent.QuantityPercent!="0"){
-
-                    val  quantityPercent = (percent.QuantityPercent.toInt() * it.size).toString()
+                    val  quantityPercent = (percent.QuantityPercent.toInt()/ it.size *100).toString()
+                    //cantidad realizado /total * 100
                     Log.d("valorpercent",quantityPercent)
                     setUpDataInProgress(percent.QuantityPercent)
                 }
-
             }
 
         })

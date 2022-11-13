@@ -40,7 +40,6 @@ class ViewHolderDetailsFusionsAdapter(view: View): RecyclerView.ViewHolder(view)
                 power.visibility =View.VISIBLE
                 power.isEnabled=false
                 status.visibility =View.VISIBLE
-                Log.d("calculos", (currentList.QuantityPercent.toInt()).toString())
             }else{
                 itemView.context .registerReceiver(updateTime,IntentFilter(TimerService.TIMER_UPDATED))
             }
