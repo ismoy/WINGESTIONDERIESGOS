@@ -45,15 +45,8 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
         navController = Navigation.findNavController(view)
-        setUpDataInSpinner()
         binding.btnRegister.setOnClickListener {
-
-            if (binding.autoCompleteTextViewrole.text.toString().isEmpty()){
-                binding.layoutdrop.helperText =getString(R.string.erroremptyfield)
-            }else{
-                register()
-                binding.layoutdrop.helperText =""
-            }
+            register()
         }
         validateRealTime()
     }
@@ -155,14 +148,6 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun setUpDataInSpinner() {
-        val lisRole = listOf("Cliente","Administrador")
-        val  adapterItems = ArrayAdapter(requireContext(),R.layout.dropdowm_item,lisRole)
-        binding.autoCompleteTextViewrole.setAdapter(adapterItems)
-        binding.autoCompleteTextViewrole.setOnItemClickListener { adapterView, view, i, l ->
-            selected =adapterView.getItemAtPosition(i).toString()
-        }
-    }
     private fun registerUserInDatatabase(email: String , nameComplete: String , userName: String , password: String) {
         dialog.setContentView(R.layout.dialog_loading)
         dialog.setCancelable(false)
@@ -170,18 +155,8 @@ class RegisterFragment : Fragment() {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         }
         dialog.show()
-        val saveData = selected?.let {
-            Users(mAuthProvider.getId().toString(),email,nameComplete,userName,password,
-                it ,0)
-        }
-        if (saveData != null) {
-            if (selected=="Cliente"){
-                viewModel.register(mAuthProvider.getId().toString(),saveData)
-            }else{
-                viewModel.registerAdmin(mAuthProvider.getId().toString(),saveData)
-            }
-
-        }
+        val saveData = Users(mAuthProvider.getId().toString(),email,nameComplete,userName,password, "Client")
+        viewModel.register(mAuthProvider.getId().toString(),saveData)
         viewModel.responseRegister.observe(viewLifecycleOwner, Observer {response->
          if (response.isSuccessful){
              Toast.makeText(requireContext() , "La cuenta fue creada con exito" , Toast.LENGTH_SHORT).show()
@@ -190,16 +165,6 @@ class RegisterFragment : Fragment() {
          }else{
              Toast.makeText(requireContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show()
          }
-        })
-
-        viewModel.responseRegisterAdmin.observe(viewLifecycleOwner, Observer {responseAdmin->
-            if (responseAdmin.isSuccessful){
-                Toast.makeText(requireContext() , "La cuenta fue creada con exito" , Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.action_registerFragment_to_loginFragment)
-                dialog.dismiss()
-            }else{
-                Toast.makeText(requireContext(), responseAdmin.errorBody().toString(), Toast.LENGTH_SHORT).show()
-            }
         })
     }
 }

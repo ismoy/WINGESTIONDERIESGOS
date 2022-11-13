@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/client_nav_graph"
+    app:startDestination="@id/homeClientFragment">
+    <fragment
+        android:id="@+id/homeClientFragment"
+        android:name="com.win.gestionderiesgos.ui.home.HomeClientFragment"
+        android:label="IDsupervisor"
+        tools:layout="@layout/fragment_home_client" >
+        <action
+            android:id="@+id/action_homeClientFragment_to_listFuscionsProjectFragment"
+            app:destination="@id/listFuscionsProjectFragment" />
+        <action
+            android:id="@+id/action_homeClientFragment_to_detailsFusionsActivityFragment"
+            app:destination="@id/detailsFusionsActivityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFuscionsProjectFragment"
+        android:name="com.win.gestionderiesgos.ui.fragment.listFuscionsProject.ListFuscionsProjectFragment"
+        android:label="fragment_list_fuscions_project"
+        tools:layout="@layout/fragment_list_fuscions_project" >
+        <action
+            android:id="@+id/action_listFuscionsProjectFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_listFuscionsProjectFragment_to_detailsFusionsActivityFragment"
+            app:destination="@id/detailsFusionsActivityFragment" />
+        <action
+            android:id="@+id/action_listFuscionsProjectFragment_to_homeClientFragment"
+            app:destination="@id/homeClientFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFusionsActivityFragment"
+        android:name="com.win.gestionderiesgos.ui.fragment.detailsFusionActivity.DetailsFusionsActivityFragment"
+        android:label="DetailsFusionsActivityFragment" >
+        <action
+            android:id="@+id/action_detailsFusionsActivityFragment_to_listFuscionsProjectFragment"
+            app:destination="@id/listFuscionsProjectFragment" />
+        <action
+            android:id="@+id/action_detailsFusionsActivityFragment_to_homeClientFragment"
+            app:destination="@id/homeClientFragment" />
+    </fragment>
+</navigation>

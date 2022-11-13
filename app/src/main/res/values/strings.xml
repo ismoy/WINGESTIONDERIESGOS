@@ -5,4 +5,5 @@
     <string name="erroremptyfield">Por favor, ingresa el dato solicitado</string>
     <string name="existemail">Ya tienes una cuenta en nuestro registro con ese correo</string>
     <string name="espere_por_favor">Espere por favor...</string>
+    <string name="default_notification_channel_id">fcm_default_channel</string>
 </resources>

@@ -8,17 +8,23 @@
         <entry key="app/src/main/res/drawable/bg_color_home.xml" value="0.2795" />
         <entry key="app/src/main/res/drawable/bg_item_ptoject.xml" value="0.2795" />
         <entry key="app/src/main/res/drawable/bg_plants.xml" value="0.267" />
+        <entry key="app/src/main/res/drawable/bg_tv_finish.xml" value="0.267" />
         <entry key="app/src/main/res/drawable/btn_rounded.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/btn_roundedfuncion.xml" value="0.2795" />
         <entry key="app/src/main/res/drawable/btn_roundedlog_reg.xml" value="0.2795" />
         <entry key="app/src/main/res/drawable/circle_pg.xml" value="0.2795" />
+        <entry key="app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.267" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/activity_home_client.xml" value="0.27219202898550726" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3808876811594203" />
         <entry key="app/src/main/res/layout/activity_register_funcion.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/dropdowm_item.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.14791666666666667" />
+        <entry key="app/src/main/res/layout/fragment_details_fusion_activity.xml" value="0.27219202898550726" />
+        <entry key="app/src/main/res/layout/fragment_details_fusions_activity.xml" value="0.27219202898550726" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/fragment_home_client.xml" value="0.27219202898550726" />
         <entry key="app/src/main/res/layout/fragment_list_fuscions_project.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3808876811594203" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
@@ -27,11 +33,13 @@
         <entry key="app/src/main/res/layout/fragment_register_project.xml" value="0.27219202898550726" />
         <entry key="app/src/main/res/layout/fragment_register_risk.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/item_list_activity.xml" value="0.27219202898550726" />
         <entry key="app/src/main/res/layout/item_list_funcions.xml" value="0.22192028985507245" />
         <entry key="app/src/main/res/layout/item_list_funcios.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/item_proyect_list.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/nav_drawer.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.3333333333333333" />
+        <entry key="app/src/main/res/menu/menu_client.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/menu/menu_navegation_drawer.xml" value="0.334375" />
       </map>
     </option>

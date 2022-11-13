@@ -19,9 +19,16 @@ class ViewHolderListProjectAdapter(view: View):RecyclerView.ViewHolder(view) {
            nameProject.text =currentList.name
            percente.text ="${currentList.QuantityPercent}%"
        }
-        itemView.setOnClickListener {
-            onClickListener(currentList)
-            Navigation.findNavController(binding.nameProject.context as Activity , R.id.container_fragment).navigate(R.id.action_homeFragment_to_listFuscionsProjectFragment)
+        if (currentList.QuantityPercent==0){
+            itemView.isEnabled =false
+            binding.nameProject.isEnabled=false
+            binding.percente.isEnabled=false
+        }else{
+            itemView.setOnClickListener {
+                onClickListener(currentList)
+                Navigation.findNavController(binding.nameProject.context as Activity , R.id.container_fragment_client).navigate(R.id.action_homeClientFragment_to_listFuscionsProjectFragment)
+            }
         }
+
     }
 }
