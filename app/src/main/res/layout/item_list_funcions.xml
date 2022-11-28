@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:indeterminate="false"
             android:indeterminateOnly="false"
-            tools:progress="60"
             android:progressDrawable="@drawable/circle_pg"
             android:layout_gravity="end"/>
     </androidx.appcompat.widget.LinearLayoutCompat>

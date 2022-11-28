@@ -38,14 +38,30 @@ class RegisterRiskFragment : Fragment() {
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
         navController = NavController(requireContext())
-        viewModel.getFuncions()
+        viewModel.getFuncions(requireActivity())
         mAuthProvider = AuthProvider()
+        observeViewModel()
+
+    }
+
+    private fun observeViewModel() {
         viewModel.responsegetFuncions.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()){
                 setUpDataInSpinner(it)
             }
 
         })
+
+        viewModel.noExistSnapshot.observe(viewLifecycleOwner) { noExist ->
+            if (noExist) {
+                binding.apply {
+                    layoutdrop.helperText = "No hay Funcion Registrado en el sistema por favor ingrese una"
+                btnAgregar.isEnabled=false
+                }
+            }else{
+                binding.btnAgregar.isEnabled=true
+            }
+        }
     }
 
     private fun setUpDataInSpinner(list: List<Funcions>?) {
@@ -64,7 +80,7 @@ class RegisterRiskFragment : Fragment() {
                 binding.layoutRegisteractivity.helperText =getString(R.string.erroremptyfield)
             }else{
                 binding.layoutRegisteractivity.helperText =""
-                val risk= Risk(selected,binding.registerActivity.text.toString(),mAuthProvider.getId().toString(), Constants.CURRENTTIME.toString())
+                val risk= Risk(selected,binding.registerActivity.text.toString(),"",mAuthProvider.getId().toString(), Constants.CURRENTTIME.toString(),"","","","")
                 viewModelRegisterActivity.registerRisk(risk)
                 viewModelRegisterActivity.responseRisk.observe(viewLifecycleOwner, Observer {
                     if (it.isSuccessful){

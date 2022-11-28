@@ -18,7 +18,6 @@ import com.win.gestionderiesgos.databinding.ActivityHomeClientBinding
 
 class HomeClientActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
     lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var binding: ActivityHomeClientBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
@@ -29,8 +28,6 @@ class HomeClientActivity : AppCompatActivity() , NavigationView.OnNavigationItem
         setContentView(binding.root)
         //BottomNavigationView
         navController = findNavController(R.id.container_fragment_client)
-        bottomNavigationView = binding.bottomNavigationView
-        setupBottomNavigation()
         //DrawerLayout
         drawerLayout = binding.drawerLayout
         //NavigationUpButton
@@ -49,10 +46,6 @@ class HomeClientActivity : AppCompatActivity() , NavigationView.OnNavigationItem
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
-
-    private fun setupBottomNavigation() {
-        bottomNavigationView.setupWithNavController(navController)
-    }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         drawerLayout.closeDrawer(GravityCompat.START)

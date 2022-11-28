@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.win.gestionderiesgos.ui.home.HomeFragment"
-        android:label="IDsupervisor"
+        android:label="USUARIO ADMINISTRADOR"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_registerFuncionFragment"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/registerFuncionFragment"
         android:name="com.win.gestionderiesgos.ui.fragment.registerFuncion.RegisterFuncionFragment"
-        android:label="fragment_register_funcion"
+        android:label="REGISTRAR FUNCIONES"
         tools:layout="@layout/fragment_register_funcion" >
         <action
             android:id="@+id/action_registerFuncionFragment_to_homeFragment"
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/registerActivityFragment"
         android:name="com.win.gestionderiesgos.ui.fragment.registerActivity.RegisterActivityFragment"
-        android:label="fragment_register_activity"
+        android:label="REGISTRAR ACTIVIDAD"
         tools:layout="@layout/fragment_register_activity" >
         <action
             android:id="@+id/action_registerActivityFragment_to_registerFuncionFragment"
@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/registerRiskFragment"
         android:name="com.win.gestionderiesgos.ui.fragment.registerRisk.RegisterRiskFragment"
-        android:label="fragment_register_risk"
+        android:label="REGISTRAR RIESGOS"
         tools:layout="@layout/fragment_register_risk" >
         <action
             android:id="@+id/action_registerRiskFragment_to_homeFragment"
@@ -64,7 +64,7 @@
     <fragment
         android:id="@+id/registerProjectFragment"
         android:name="com.win.gestionderiesgos.ui.fragment.registerProject.RegisterProjectFragment"
-        android:label="fragment_register_project"
+        android:label="REGISTRAR PROYECTO"
         tools:layout="@layout/fragment_register_project" >
         <action
             android:id="@+id/action_registerProjectFragment_to_homeFragment"

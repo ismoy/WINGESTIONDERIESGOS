@@ -9,4 +9,7 @@ class RegisterRiskRepository {
     suspend fun createRisk(risk: Risk):Response<Risk>{
         return RetrofitInstance.wingestionApi.createRisk(risk)
     }
+    suspend fun createRiskUser(risk: Risk):Response<Risk>{
+        return RetrofitInstance.wingestionApi.createRiskByUser(risk)
+    }
 }

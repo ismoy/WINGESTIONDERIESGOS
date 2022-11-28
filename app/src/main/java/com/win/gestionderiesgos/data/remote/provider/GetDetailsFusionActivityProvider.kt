@@ -6,20 +6,34 @@ import com.google.firebase.database.FirebaseDatabase
 import java.util.HashMap
 
 class GetDetailsFusionActivityProvider {
-    var mDatabase: DatabaseReference?= FirebaseDatabase.getInstance().reference.child("Admin").child("Proyectos").child("Fusion").child("Actividad")
-    fun getDetailsFusionActivity():DatabaseReference?{
+    private var mDatabase: DatabaseReference= FirebaseDatabase.getInstance().reference.child("Actividad")
+    fun getDetailsFusionActivity():DatabaseReference{
         return mDatabase
     }
 
-    fun updateTimer(idKeyActivity:String,timerFinish: String?): Task<Void?>? {
+    fun updateTimer(idKeyActivity:String,timerFinish: String?): Task<Void?> {
         val map: MutableMap<String?, Any?> = HashMap()
         map["timeFinish"] = timerFinish
-        return idKeyActivity.let { mDatabase?.child(it)?.updateChildren(map) }
+        return idKeyActivity.let { mDatabase.child(it).updateChildren(map) }
     }
 
-    fun updateQuantityPercent(idKeyActivity:String,quantityPercent: String?): Task<Void?>? {
+    fun updateStatus(idKeyActivity:String,status: String?): Task<Void?> {
+        val map: MutableMap<String?, Any?> = HashMap()
+        map["status"] = status
+        return idKeyActivity.let { mDatabase.child(it).updateChildren(map) }
+    }
+    fun updateStatusIdKeyFusion(idKeyActivity:String,status_idKeyFusion: String?): Task<Void?> {
+        val map: MutableMap<String?, Any?> = HashMap()
+        map["status_idKeyFusion"] = status_idKeyFusion
+        return idKeyActivity.let { mDatabase.child(it).updateChildren(map) }
+    }
+
+    fun updateQuantityPercent(idKey:String,quantityPercent: String?): Task<Void?> {
         val map: MutableMap<String?, Any?> = HashMap()
         map["QuantityPercent"] = quantityPercent
-        return idKeyActivity.let { mDatabase?.child(it)?.updateChildren(map) }
+        return idKey.let { mDatabase.child(it).updateChildren(map) }
+    }
+    fun getDetailsQuantityActivitiesFinished():DatabaseReference{
+        return mDatabase
     }
 }

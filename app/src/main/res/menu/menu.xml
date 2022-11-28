@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/heart"
@@ -7,7 +8,8 @@
         android:title=""/>
     <item android:id="@+id/error"
         android:icon="@drawable/ic_baseline_error_24"
-        android:title=""/>
+        android:title="RIESGO"
+        app:tint="@color/white"/>
 
     <item android:id="@+id/notification"
         android:icon="@drawable/ic_baseline_notifications_none_24"

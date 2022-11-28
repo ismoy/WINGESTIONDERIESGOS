@@ -16,10 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.win.gestionderiesgos.R
-import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.databinding.ActivityHomeBinding
-import com.win.gestionderiesgos.presentation.login.LoginViewModel
-import com.win.gestionderiesgos.utils.Constants.ROLE
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var appBarConfiguration: AppBarConfiguration

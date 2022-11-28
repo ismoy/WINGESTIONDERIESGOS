@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeClientFragment"
         android:name="com.win.gestionderiesgos.ui.home.HomeClientFragment"
-        android:label="IDsupervisor"
+        android:label="USUARIO SUPERVISOR"
         tools:layout="@layout/fragment_home_client" >
         <action
             android:id="@+id/action_homeClientFragment_to_listFuscionsProjectFragment"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/listFuscionsProjectFragment"
         android:name="com.win.gestionderiesgos.ui.fragment.listFuscionsProject.ListFuscionsProjectFragment"
-        android:label="fragment_list_fuscions_project"
+        android:label="FUNCIONES"
         tools:layout="@layout/fragment_list_fuscions_project" >
         <action
             android:id="@+id/action_listFuscionsProjectFragment_to_homeFragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/detailsFusionsActivityFragment"
         android:name="com.win.gestionderiesgos.ui.fragment.detailsFusionActivity.DetailsFusionsActivityFragment"
-        android:label="DetailsFusionsActivityFragment" >
+        android:label="ACTIVIDADES" >
         <action
             android:id="@+id/action_detailsFusionsActivityFragment_to_listFuscionsProjectFragment"
             app:destination="@id/listFuscionsProjectFragment" />

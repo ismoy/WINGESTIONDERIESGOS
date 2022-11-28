@@ -121,7 +121,7 @@ class LoginFragment : Fragment() {
                             mShowDialog.dismissDialog()
                         }
                     }else{
-                        Toast.makeText(requireContext() , user.errorBody().toString() , Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext() , user.message().toString() , Toast.LENGTH_SHORT).show()
                         mShowDialog.dismissDialog()
                     }
                 })

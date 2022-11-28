@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.registerFuncion.RegisterFuncionFragment"
-    android:background="@drawable/bg_color">
+    tools:context=".ui.fragment.registerFuncion.RegisterFuncionFragment">
 
     <TextView
         android:id="@+id/title"
@@ -22,23 +21,43 @@
         android:textColor="@color/white"
         android:textFontWeight="700"/>
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutdrop"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:helperTextTextColor="@color/design_default_color_error"
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Seleccione Proyecto"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutRegisterfuncion"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="80dp"
-        android:hint="REGISTRAR FUNCION"
+        android:hint="Ingrese el nombre de la fucion"
+        android:layout_marginTop="30dp"
+        app:helperTextTextColor="@color/design_default_color_error"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title">
+        app:layout_constraintTop_toBottomOf="@id/layoutdrop">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_funcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_roundedfuncion"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
