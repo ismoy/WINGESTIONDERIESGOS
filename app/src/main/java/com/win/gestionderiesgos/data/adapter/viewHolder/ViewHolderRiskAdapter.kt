@@ -12,6 +12,7 @@ import com.win.gestionderiesgos.data.remote.provider.GetDetailsFusionActivityPro
 import com.win.gestionderiesgos.data.remote.provider.GetRiskListProvider
 import com.win.gestionderiesgos.databinding.ItemRiskListBinding
 import com.win.gestionderiesgos.domain.model.Risk
+import com.win.gestionderiesgos.domain.model.RiskByUser
 import com.win.gestionderiesgos.services.TimerService
 import kotlin.math.roundToInt
 
@@ -22,9 +23,9 @@ class ViewHolderRiskAdapter(view: View):RecyclerView.ViewHolder(view) {
     private lateinit var riskProvider:GetRiskListProvider
     private var idKeyActivity:String=""
 
-    fun renderListRisk(currentList: Risk , holder: ViewHolderRiskAdapter) {
+    fun renderListRisk(currentList: RiskByUser , holder: ViewHolderRiskAdapter) {
         binding.apply {
-            nameRisk.text =currentList.risk
+            nameRisk.text =currentList.riesgoNoIndificado
 
             if (currentList.status=="Finish"){
                 timerRisk.text =currentList.timeRisk
@@ -39,6 +40,7 @@ class ViewHolderRiskAdapter(view: View):RecyclerView.ViewHolder(view) {
         serviceIntent= Intent(binding.nameRisk.context.applicationContext,TimerService::class.java)
         riskProvider = GetRiskListProvider()
         idKeyActivity=currentList.idKeyActivity
+        Log.d("llegoaquianciano",currentList.idKeyActivity)
         onClickListener(holder)
     }
 

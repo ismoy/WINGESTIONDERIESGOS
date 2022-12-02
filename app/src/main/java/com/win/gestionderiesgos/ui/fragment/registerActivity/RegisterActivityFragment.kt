@@ -152,7 +152,7 @@ class RegisterActivityFragment : Fragment() {
                     binding.layoutdrop.helperText =""
                     val activity= idKeyFusion?.let { it1 ->
                         Actividad(selected!!,binding.registerActivity.text.toString(),mAuthProvider.getId().toString(),CURRENTTIME.toString(),"0","","",
-                            it1,"","")
+                            it1,"","",idProjectSelected!!,"","")
                     }
                     if (activity != null) {
                         viewModelRegisterActivity.createActivity(activity)

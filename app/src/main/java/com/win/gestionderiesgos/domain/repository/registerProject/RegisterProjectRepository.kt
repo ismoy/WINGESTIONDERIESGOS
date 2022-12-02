@@ -111,6 +111,25 @@ class RegisterProjectRepository {
     suspend fun updateFusionesInGoogleSheet(action:String,id_Project:String,percentFusiones:String) {
         return RetrofitInstanceGoogleSheet.wingestionApi.updateFusionesInGoogleSheet(action, id_Project,percentFusiones)
     }
+    suspend fun updateRiesgoInGoogleSheet(action: String,id_Project: String,detailsRiesgo:String){
+        return RetrofitInstanceGoogleSheet.wingestionApi.updateRiesgoInGoogleSheet(action,id_Project,detailsRiesgo)
+    }
+
+    suspend fun updateClickRiesgoPlantaExternaInGoogleSheet(action: String,id_Project: String,click_riesgo_plantaExterna:String){
+        return RetrofitInstanceGoogleSheet.wingestionApi.updateClickRiesgoPlantaExternaInGoogleSheet(action,id_Project,click_riesgo_plantaExterna)
+    }
+
+    suspend fun updateClickRiesgoPlantaInternaInGoogleSheet(action: String,id_Project: String,click_riesgo_plantaInterna:String){
+        return RetrofitInstanceGoogleSheet.wingestionApi.updateClickRiesgoPlantaInternaInGoogleSheet(action,id_Project,click_riesgo_plantaInterna)
+    }
+
+    suspend fun updateClickRiesgoObraCivilInGoogleSheet(action: String,id_Project: String,click_riesgo_obra_civil:String){
+        return RetrofitInstanceGoogleSheet.wingestionApi.updateClickRiesgoObraCivilInGoogleSheet(action,id_Project,click_riesgo_obra_civil)
+    }
+
+    suspend fun updateClickRiesgoFusionesInGoogleSheet(action: String,id_Project: String,click_riesgo_fusiones:String){
+        return RetrofitInstanceGoogleSheet.wingestionApi.updateClickRiesgoFusionesInGoogleSheet(action,id_Project,click_riesgo_fusiones)
+    }
 
     fun getIdProject(idKeyProject:String):MutableLiveData<String>{
         val mutableLiveData =MutableLiveData<String>()

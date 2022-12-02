@@ -136,7 +136,7 @@ class RegisterFuncionFragment : Fragment() {
     private fun createFuncios(tvfuncions: String) {
         mShowDialog.showDialog()
         val currentTime = Calendar.getInstance().time
-       val funcions =Funcions(tvfuncions.uppercase(Locale.ROOT),mAuthProvider.getId().toString(),currentTime.toString(),"0",selected!!,nameProject!!,"","")
+       val funcions =Funcions(tvfuncions.uppercase(Locale.ROOT),mAuthProvider.getId().toString(),currentTime.toString(),"0",selected!!,nameProject!!,"","","${selected}_Created")
         viewModel.registerFuncions(funcions)
         viewModel.responseFuncions.observe(viewLifecycleOwner) {
             if (it.isSuccessful) {

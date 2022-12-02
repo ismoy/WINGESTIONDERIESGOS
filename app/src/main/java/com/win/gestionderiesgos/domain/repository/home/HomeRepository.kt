@@ -49,7 +49,7 @@ class HomeRepository {
      fun getAllProject(): LiveData<List<Project>> {
 
         val mutableLiveData = MutableLiveData<List<Project>>()
-        getProject.getProject().addValueEventListener(object : ValueEventListener {
+        getProject.getProject().addListenerForSingleValueEvent(object : ValueEventListener {
             val listProject = mutableListOf<Project>()
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){

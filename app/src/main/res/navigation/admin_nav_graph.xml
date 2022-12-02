@@ -24,6 +24,12 @@
         <action
             android:id="@+id/action_homeFragment_to_registerProjectFragment"
             app:destination="@id/registerProjectFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_showListRiskOnlyAdminFragment"
+            app:destination="@id/showListRiskOnlyAdminFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listActivitiesFragment"
+            app:destination="@id/listActivitiesFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFuncionFragment"
@@ -68,6 +74,24 @@
         tools:layout="@layout/fragment_register_project" >
         <action
             android:id="@+id/action_registerProjectFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showListRiskOnlyAdminFragment"
+        android:name="com.win.gestionderiesgos.ui.fragment.showRiskOnlyAdmin.ShowListRiskOnlyAdminFragment"
+        android:label="RIESGOS"
+        tools:layout="@layout/fragment_show_list_rist_only_admin" >
+        <action
+            android:id="@+id/action_showListRiskOnlyAdminFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listActivitiesFragment"
+        android:name="com.win.gestionderiesgos.ui.fragment.listActivities.ListActivitiesFragment"
+        android:label="ACTIVIDADES"
+        tools:layout="@layout/fragment_list_activities" >
+        <action
+            android:id="@+id/action_listActivitiesFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -7,8 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.win.gestionderiesgos.domain.model.Actividad
+import com.win.gestionderiesgos.domain.model.CountClickRisk
 import com.win.gestionderiesgos.domain.model.OnclickRisk
-import com.win.gestionderiesgos.domain.model.Risk
+import com.win.gestionderiesgos.domain.model.RiskByUser
 import com.win.gestionderiesgos.domain.repository.registerActivity.RegisterActivityRepository
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -19,9 +20,13 @@ class RegisterActivityViewModel:ViewModel() {
     val responseDetailsActivity:MutableLiveData<List<Actividad>> by lazy { MutableLiveData() }
     val responseGetActivitiesFinished :MutableLiveData<Float> by lazy { MutableLiveData() }
     val responseRisk:MutableLiveData<List<String>> by lazy { MutableLiveData() }
-    val responseRiskByIdUser:MutableLiveData<List<Risk>> by lazy { MutableLiveData() }
-    val responseClickRisk :MutableLiveData<Response<OnclickRisk>> by lazy { MutableLiveData() }
+    val responseRiskByIdUser:MutableLiveData<List<RiskByUser>> by lazy { MutableLiveData() }
+    val responseClickRisk :MutableLiveData<String> by lazy { MutableLiveData() }
     val getResponseOnclick:MutableLiveData<List<OnclickRisk>> by lazy { MutableLiveData() }
+    val responseGetAllRiskUserOnlyAdmin:MutableLiveData<List<RiskByUser>> by lazy { MutableLiveData() }
+    val responsecreateSnapshotRisk:MutableLiveData<Response<CountClickRisk>> by lazy { MutableLiveData() }
+    val responsegetTimeRealiseByActivities:MutableLiveData<List<String>> by lazy { MutableLiveData() }
+    val responseGetAllActivities:MutableLiveData<List<Actividad>> by lazy { MutableLiveData() }
     fun createActivity(actividad: Actividad){
         viewModelScope.launch {
             val response =repository.createActivity(actividad)
@@ -29,10 +34,18 @@ class RegisterActivityViewModel:ViewModel() {
         }
     }
 
-    fun onClickRisk(onclickRisk: OnclickRisk){
+    fun createSnapshotRisk(uidFusion:String,countClickRisk: CountClickRisk){
         viewModelScope.launch {
-            val response =repository.onClickRisk(onclickRisk)
-            responseClickRisk.value =response
+            val response =repository.createSnapshotRisk(uidFusion, countClickRisk)
+            responsecreateSnapshotRisk.value=response
+        }
+    }
+    fun onClickRisk(nameFusion:String){
+        viewModelScope.launch {
+            repository.getCountClickProvider(nameFusion).observeForever {
+                responseClickRisk.value =it
+            }
+
         }
     }
     fun getOnClickRisk(clickRisk:String){
@@ -67,11 +80,36 @@ class RegisterActivityViewModel:ViewModel() {
         }
     }
 
-    fun getAllRiskByIdUser(idUser:String){
+    fun getAllRiskByIdUser(idUserNameFusion:String){
         viewModelScope.launch {
-            repository.getAllRiskByIdUser(idUser).observeForever {
+            repository.getAllRiskByIdUser(idUserNameFusion).observeForever {
                 responseRiskByIdUser.value =it
             }
+        }
+    }
+    fun getAllRiskUserOnlyAdmin(){
+        viewModelScope.launch {
+            repository.getAllRiskUserOnlyAdmin().observeForever {
+                responseGetAllRiskUserOnlyAdmin.value=it
+            }
+        }
+    }
+
+    fun getTimeRealiseByActivities(idKeyProject:String){
+        viewModelScope.launch {
+           repository.getTimeRealiseByActivities(idKeyProject).observeForever {
+               responsegetTimeRealiseByActivities.value=it
+           }
+
+        }
+    }
+
+    fun getAllActivities(){
+        viewModelScope.launch {
+          repository.getAllActivities().observeForever {
+              responseGetAllActivities.value =it
+          }
+
         }
     }
 }

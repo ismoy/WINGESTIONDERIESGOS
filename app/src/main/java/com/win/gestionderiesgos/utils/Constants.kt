@@ -13,7 +13,7 @@ object Constants {
     const val BASE_URL_FCM ="https://fcm.googleapis.com/"
     const val SERVER_KEY ="AAAABNSu0xE:APA91bFf6HpHuNqSnECY7Po5cCV7Ihvw9EoJ3ESyx3OzoZVqSjTsipQmeN3zGnNivAlK-BqAm_qXIVOCEm_ZpTmuDS8PQAErZ-qxZGxjBv4kLxhUd_WVcxNgkfZenAzTOOScHQ0qoUzN"
     const val CONTENT_TYPE ="application/json"
-    const val TITLENOTIFICATION ="NUEVA VENTA"
+    const val TITLENOTIFICATION ="NUEVA NOTIFICACION"
     val TOLERANCE = 0.9
     val WITDH = 1
     val HEIGHT = 2
@@ -23,6 +23,13 @@ object Constants {
     const val ACTION_UPDATE_EXTERNA ="updateplantaexterna"
     const val ACTION_UPDATE_OBRA_CIVIL ="updateobracivil"
     const val ACTION_UPDATE_FUSIONES ="updatefusiones"
+    const val ACTION_UPDATE_RIESGOS ="updateriesgos"
+    const val ACTION_UPDATE_CLICK_RIESGOS_PLANTA_EXTERNA ="updateclickRiesgoPlantaExterna"
+    const val ACTION_UPDATE_CLICK_RIESGOS_PLANTA_INTERNA ="updateclickRiesgoPlantaInterna"
+    const val ACTION_UPDATE_CLICK_RIESGOS_OBRA_CIVIL ="updateclickRiesgoObraCivil"
+    const val ACTION_UPDATE_CLICK_RIESGOS_FUSIONES ="updateclickRiesgoFusiones"
+
+
 
     fun getValueSharedPreferences(activity: Activity , value: String): String {
         val sharedPreferences: SharedPreferences = activity.getSharedPreferences("sharedPreferences", Context.MODE_PRIVATE)

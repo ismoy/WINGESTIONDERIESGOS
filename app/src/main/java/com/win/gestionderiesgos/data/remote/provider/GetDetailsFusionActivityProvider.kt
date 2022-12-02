@@ -28,6 +28,18 @@ class GetDetailsFusionActivityProvider {
         return idKeyActivity.let { mDatabase.child(it).updateChildren(map) }
     }
 
+    fun updateStatusNameUser(idKeyActivity:String,nameUser: String?): Task<Void?> {
+        val map: MutableMap<String?, Any?> = HashMap()
+        map["nameUser"] = nameUser
+        return idKeyActivity.let { mDatabase.child(it).updateChildren(map) }
+    }
+
+    fun updateStatusNameProject(idKeyActivity:String,nameProject: String?): Task<Void?> {
+        val map: MutableMap<String?, Any?> = HashMap()
+        map["nameProject"] = nameProject
+        return idKeyActivity.let { mDatabase.child(it).updateChildren(map) }
+    }
+
     fun updateQuantityPercent(idKey:String,quantityPercent: String?): Task<Void?> {
         val map: MutableMap<String?, Any?> = HashMap()
         map["QuantityPercent"] = quantityPercent

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,21 +20,36 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true">
 
         <ProgressBar
             android:id="@+id/progress"
-            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:progressDrawable="@drawable/circle_pg"
-            android:layout_gravity="end"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvpercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="10sp"
+            android:textColor="@color/colorSecondary"
+            app:layout_constraintBottom_toBottomOf="@+id/progress"
+            app:layout_constraintEnd_toEndOf="@+id/progress"
+            app:layout_constraintStart_toStartOf="@+id/progress"
+            app:layout_constraintTop_toTopOf="@+id/progress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>

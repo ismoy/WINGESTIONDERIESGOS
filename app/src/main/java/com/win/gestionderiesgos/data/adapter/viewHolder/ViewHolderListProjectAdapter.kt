@@ -25,7 +25,6 @@ class ViewHolderListProjectAdapter(view: View):RecyclerView.ViewHolder(view) {
        binding.apply {
            nameProject.text =currentList.name
            percente.text="${parseInt.toInt()}%"
-
        }
         if (currentList.status==""){
             itemView.isEnabled =false

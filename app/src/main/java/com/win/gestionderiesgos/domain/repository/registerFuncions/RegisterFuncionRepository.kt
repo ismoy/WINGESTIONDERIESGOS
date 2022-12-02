@@ -35,7 +35,8 @@ class RegisterFuncionRepository {
                          val idProject =ds.child("idProject").value.toString()
                          val nameProject =ds.child("nameProject").value.toString()
                          val status=ds.child("status").value.toString()
-                         val listas =Funcions(name,idUser, dateCreated,QuantityPercent,idProject,nameProject,ds.key.toString(),status)
+                         val status_idKeyProject=ds.child("status_idKeyProject").value.toString()
+                         val listas =Funcions(name,idUser, dateCreated,QuantityPercent,idProject,nameProject,ds.key.toString(),status,status_idKeyProject)
                          Constants.setValueSharedPreferences(activity,"idKeyFusion",ds.key.toString())
                          listFuncions.add(listas )
                      }

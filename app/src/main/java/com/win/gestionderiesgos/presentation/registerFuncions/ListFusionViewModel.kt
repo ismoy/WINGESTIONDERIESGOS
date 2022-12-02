@@ -30,9 +30,9 @@ class ListFusionViewModel : ViewModel() {
         return responseGetFusionsByIdProject
     }
 
-    fun getFusionFinished(){
+    fun getFusionFinished(status_idKeyProject:String){
         viewModelScope.launch {
-            repository.getFusionFinished().observeForever {
+            repository.getFusionFinished(status_idKeyProject).observeForever {
                 responseGetFusionFinished.value =it
             }
         }

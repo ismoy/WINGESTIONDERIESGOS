@@ -15,6 +15,8 @@ interface WingestionApi {
     @PATCH("Admin/{uidUser}.json")
     suspend fun registerAdmin(@Path("uidUser") uidUser:String , @Body param: Users): Response<Users>
 
+    @PATCH("CountClickRisk/{uidFusion}.json")
+    suspend fun createSnapshotRisk(@Path("uidFusion") uidFusion:String , @Body param: CountClickRisk): Response<CountClickRisk>
     @GET("Clients/{uidUser}.json")
     suspend fun getOnlyUser(@Path("uidUser") uidUser:String):Response<Users>
 
@@ -28,13 +30,16 @@ interface WingestionApi {
     suspend fun createRisk(@Body risk: Risk):Response<Risk>
 
     @POST("RiesgoUsuario.json")
-    suspend fun createRiskByUser(@Body risk: Risk):Response<Risk>
+    suspend fun createRiskByUser(@Body risk: RiskByUser):Response<RiskByUser>
 
     @POST("Admin/Proyectos.json")
     suspend fun createProject(@Body project: Project):Response<Project>
 
     @POST("OnClickRisk.json")
     suspend fun onClickRisk(@Body onclickRisk: OnclickRisk):Response<OnclickRisk>
+
+    @GET("Actividad.json")
+    suspend fun getAllActivities():Response<Actividad>
     @Headers(
         "Content-Type:$CONTENT_TYPE",
         "Authorization:key=$SERVER_KEY")
@@ -96,5 +101,36 @@ interface WingestionApi {
         @Query("action")action:String,
         @Query("id_Project") id_Project: String,
         @Query("percentFusiones")percentFusiones:String
+    )
+    @GET("exec")
+    suspend fun updateRiesgoInGoogleSheet(
+        @Query("action")action:String,
+        @Query("id_Project") id_Project: String,
+        @Query("detaillsRiesgo")detaillsRiesgo:String
+    )
+
+    @GET("exec")
+    suspend fun updateClickRiesgoPlantaExternaInGoogleSheet(
+        @Query("action")action:String,
+        @Query("id_Project") id_Project: String,
+        @Query("click_riesgo_plantaExterna")click_riesgo_plantaExterna:String
+    )
+    @GET("exec")
+    suspend fun updateClickRiesgoPlantaInternaInGoogleSheet(
+        @Query("action")action:String,
+        @Query("id_Project") id_Project: String,
+        @Query("click_riesgo_plantaInterna")click_riesgo_plantaInterna:String
+    )
+    @GET("exec")
+    suspend fun updateClickRiesgoObraCivilInGoogleSheet(
+        @Query("action")action:String,
+        @Query("id_Project") id_Project: String,
+        @Query("click_riesgo_obra_civil")click_riesgo_obra_civil:String
+    )
+    @GET("exec")
+    suspend fun updateClickRiesgoFusionesInGoogleSheet(
+        @Query("action")action:String,
+        @Query("id_Project") id_Project: String,
+        @Query("click_riesgo_fusiones")click_riesgo_fusiones:String
     )
 }

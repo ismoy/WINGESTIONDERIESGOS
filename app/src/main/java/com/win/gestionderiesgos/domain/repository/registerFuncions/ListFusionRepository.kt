@@ -27,7 +27,8 @@ class ListFusionRepository {
                          val idProject =ds.child("idProject").value.toString()
                          val nameProject =ds.child("nameProject").value.toString()
                          val status=ds.child("status").value.toString()
-                         val listas =Funcions(name,idUser, dateCreated,QuantityPercent,idProject,nameProject,ds.key.toString(),status)
+                         val status_idKeyProject=ds.child("status_idKeyProject").value.toString()
+                         val listas =Funcions(name,idUser, dateCreated,QuantityPercent,idProject,nameProject,ds.key.toString(),status,status_idKeyProject)
                          listFuncions.add(listas)
                      }
                      mutableLiveData.value =listFuncions
@@ -43,9 +44,9 @@ class ListFusionRepository {
         return mutableLiveData
     }
 
-    fun getFusionFinished():MutableLiveData<Float>{
+    fun getFusionFinished(status_idKeyProject:String):MutableLiveData<Float>{
         val mutableLiveData =MutableLiveData<Float>()
-        getFusionByIdProject.getFuncions().orderByChild("status").equalTo("Finish").addListenerForSingleValueEvent(object :ValueEventListener{
+        getFusionByIdProject.getFuncions().orderByChild("status_idKeyProject").equalTo(status_idKeyProject).addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     mutableLiveData.value =snapshot.childrenCount.toFloat()

@@ -6,10 +6,6 @@
         android:id="@+id/heart"
         android:icon="@drawable/ic_baseline_heart_broken_24"
         android:title=""/>
-    <item android:id="@+id/error"
-        android:icon="@drawable/ic_baseline_error_24"
-        android:title="RIESGO"
-        app:tint="@color/white"/>
 
     <item android:id="@+id/notification"
         android:icon="@drawable/ic_baseline_notifications_none_24"

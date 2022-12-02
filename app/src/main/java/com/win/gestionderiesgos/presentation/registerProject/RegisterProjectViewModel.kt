@@ -151,6 +151,41 @@ class RegisterProjectViewModel : ViewModel() {
         }
     }
 
+    fun updateRiesgoInGoogleSheet(action: String,id_Project: String,detaillRiesgo:String){
+        viewModelScope.launch {
+            repository.updateRiesgoInGoogleSheet(action,id_Project,detaillRiesgo)
+        }
+
+    }
+
+    fun updateClickRiesgoPlantaExternaInGoogleSheet(action: String,id_Project: String,click_riesgo_plantaExterna:String){
+        viewModelScope.launch {
+            repository.updateClickRiesgoPlantaExternaInGoogleSheet(action,id_Project,click_riesgo_plantaExterna)
+        }
+
+    }
+
+    fun updateClickRiesgoPlantaInternaInGoogleSheet(action: String,id_Project: String,click_riesgo_plantaInterna:String){
+        viewModelScope.launch {
+            repository.updateClickRiesgoPlantaInternaInGoogleSheet(action,id_Project,click_riesgo_plantaInterna)
+        }
+
+    }
+
+    fun updateClickRiesgoObraCivilInGoogleSheet(action: String,id_Project: String,click_riesgo_obra_civil:String){
+        viewModelScope.launch {
+            repository.updateClickRiesgoObraCivilInGoogleSheet(action,id_Project,click_riesgo_obra_civil)
+        }
+
+    }
+
+    fun updateClickRiesgoFusionesInGoogleSheet(action: String,id_Project: String,click_riesgo_fusiones:String){
+        viewModelScope.launch {
+            repository.updateClickRiesgoFusionesInGoogleSheet(action,id_Project,click_riesgo_fusiones)
+        }
+
+    }
+
     fun getIdProject(idKeyProject: String) {
         viewModelScope.launch {
             repository.getIdProject(idKeyProject).observeForever { idProject ->

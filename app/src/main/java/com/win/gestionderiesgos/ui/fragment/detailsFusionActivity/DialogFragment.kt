@@ -13,19 +13,24 @@ import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.databinding.DialogFragmentBinding
 import com.win.gestionderiesgos.domain.model.Risk
+import com.win.gestionderiesgos.domain.model.RiskByUser
 import com.win.gestionderiesgos.presentation.registerActivity.RegisterActivityViewModel
+import com.win.gestionderiesgos.presentation.registerProject.RegisterProjectViewModel
 import com.win.gestionderiesgos.presentation.registerRisk.RegisterRiskViewModel
 import com.win.gestionderiesgos.utils.Constants
 
 class DialogFragment:DialogFragment() {
   private val viewModel by lazy { ViewModelProvider(this)[RegisterActivityViewModel::class.java] }
     private val viewModelRegisterRisk by lazy { ViewModelProvider(this)[RegisterRiskViewModel::class.java] }
+    private val viewModelRegisterProject by lazy { ViewModelProvider(this)[RegisterProjectViewModel::class.java] }
+
     private var selectedItem:String=""
     private var nameFusion:String?=null
     private var idKeyActivity:String?=null
     private var idKeyFusion:String?=null
     private lateinit var binding:DialogFragmentBinding
     private lateinit var mAuthProvider: AuthProvider
+    private var arrayRisk=ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater ,
@@ -54,10 +59,12 @@ class DialogFragment:DialogFragment() {
         })
         binding.apply {
             btnAccept.setOnClickListener {
-                val risk=Risk(nameFusion!!,selectedItem,binding.nameRisk.text.toString(),mAuthProvider.getId().toString(),Constants.CURRENTTIME.toString(),idKeyActivity!!,idKeyFusion!!,"","")
+                val risk= RiskByUser(nameFusion!!,selectedItem,binding.nameRisk.text.toString(),mAuthProvider.getId().toString(),Constants.CURRENTTIME.toString(),idKeyActivity!!,idKeyFusion!!,"","","","",
+                    Constants.getValueSharedPreferences(requireActivity(),"nameUser"),"${mAuthProvider.getId()}_$nameFusion")
                 viewModelRegisterRisk.registerRiskUser(risk)
                 viewModelRegisterRisk.responseRiskByUser.observe(viewLifecycleOwner, Observer { response->
                     if (response.isSuccessful){
+                        viewModelRegisterProject.updateRiesgoInGoogleSheet(Constants.ACTION_UPDATE_RIESGOS,Constants.getValueSharedPreferences(requireActivity(),"idProjectSelected"),binding.nameRisk.text.toString())
                         Toast.makeText(requireContext() , "se registro correctamente" , Toast.LENGTH_SHORT).show()
                         dialog!!.dismiss()
                     }

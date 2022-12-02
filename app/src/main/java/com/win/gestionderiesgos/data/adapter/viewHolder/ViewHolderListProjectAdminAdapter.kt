@@ -13,8 +13,10 @@ class ViewHolderListProjectAdminAdapter(view: View):RecyclerView.ViewHolder(view
     @SuppressLint("SetTextI18n")
     fun renderListProject(currentList: Project) {
         getFusionProvider= GetFusionProvider()
+        val parseInt =currentList.QuantityPercent.toFloat()
        binding.apply {
            nameProject.text =currentList.name
+           percente.text="${parseInt.toInt()}%"
        }
         if (currentList.QuantityPercent=="0") {
             itemView.isEnabled = false

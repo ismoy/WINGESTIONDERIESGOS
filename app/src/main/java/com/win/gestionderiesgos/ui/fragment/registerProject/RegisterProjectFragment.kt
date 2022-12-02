@@ -180,19 +180,15 @@ class RegisterProjectFragment : Fragment() {
                             val tokenClient: String = ds.child("token").value.toString()
                             PushNotification(
                                 NotificationData(
-                                    TITLENOTIFICATION , "tienes una nueva solicitud"
+                                    TITLENOTIFICATION , "tienes un nuevo proyecto ${binding.nameProject.text.toString()}"
                                 ) , tokenClient
                             ).also { push ->
                                 notificationViewModel.sendNotification(push)
                                 notificationViewModel.responseNotification.observe(
-                                    viewLifecycleOwner
+                                    requireActivity()
                                 ) {
                                     if (it.isSuccessful) {
-                                        Navigation.findNavController(
-                                            requireActivity() ,
-                                            R.id.container_fragment
-                                        )
-                                            .navigate(R.id.action_registerProjectFragment_to_homeFragment)
+
                                     }
                                 }
                             }
@@ -224,6 +220,7 @@ class RegisterProjectFragment : Fragment() {
                     "se asigno correctamente el proyecto al usuario $selected" ,
                     Toast.LENGTH_SHORT
                 ).show()
+                Navigation.findNavController(requireActivity() , R.id.container_fragment).navigate(R.id.action_registerProjectFragment_to_homeFragment)
                 mShowDialog.dismissDialog()
                 sendDataInGoogleSheet()
             } else {

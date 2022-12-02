@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.adapter.viewHolder.ViewHolderRiskAdapter
 import com.win.gestionderiesgos.domain.model.Risk
+import com.win.gestionderiesgos.domain.model.RiskByUser
 
 class ListRiskAdapter:RecyclerView.Adapter<ViewHolderRiskAdapter>() {
-    private var riskList = emptyList<Risk>()
+    private var riskList = emptyList<RiskByUser>()
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): ViewHolderRiskAdapter {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_risk_list,parent,false)
         return ViewHolderRiskAdapter(view)
@@ -24,7 +25,7 @@ class ListRiskAdapter:RecyclerView.Adapter<ViewHolderRiskAdapter>() {
     override fun getItemCount() = riskList.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<Risk>) {
+    fun setData(list: List<RiskByUser>) {
         this.riskList = list
         notifyDataSetChanged()
     }

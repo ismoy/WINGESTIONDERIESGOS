@@ -85,19 +85,16 @@ class ListFuscionsProjectFragment : Fragment() {
                 }
             }
         })
-        viewModel.getFusionFinished()
+        viewModel.getFusionFinished("${idKeyProject}_Finish")
         viewModel.responseGetFusionFinished.observe(viewLifecycleOwner, Observer {totalFinish->
             if (totalFinish!=null){
                  resultPercent= totalFinish / totalQuantity!! * 100
-                Log.d("dfjdjddjdjdj",resultPercent.toString())
                updatePercentProject(resultPercent!!)
             }else{
                  resultPercent= 0F
-                updatePercentProject(resultPercent!!)
             }
 
         })
-        Log.d("dfjdjddjdjdj",totalQuantity.toString())
     }
 
     private fun updatePercentProject(resultPercent: Float) {

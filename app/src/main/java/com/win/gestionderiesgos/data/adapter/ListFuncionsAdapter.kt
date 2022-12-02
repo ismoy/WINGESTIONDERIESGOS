@@ -1,6 +1,7 @@
 package com.win.gestionderiesgos.data.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.adapter.viewHolder.ViewHolderListfuncionsAdapter
 import com.win.gestionderiesgos.domain.model.Funcions
 import com.win.gestionderiesgos.domain.model.Project
+import com.win.gestionderiesgos.presentation.registerFuncions.ListFusionViewModel
 
 class ListFuncionsAdapter(private val onListener:(Funcions) -> Unit) :RecyclerView.Adapter<ViewHolderListfuncionsAdapter>()  {
     private var listfuncions = emptyList<Funcions>()

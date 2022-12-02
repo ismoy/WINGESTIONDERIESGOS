@@ -1,6 +1,8 @@
 package com.win.gestionderiesgos.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.adapter.ListProjectAdapter
 import com.win.gestionderiesgos.data.adapter.ListProjectAdminAdapter
 import com.win.gestionderiesgos.data.remote.provider.AuthProvider
@@ -44,19 +47,40 @@ class HomeFragment : Fragment() {
             adapter =projectAdapter
             layoutManager = LinearLayoutManager(context)
         }
-        setUpRecyclerView()
+        createSwipe()
         generateToken()
+        observeViewModel()
 
     }
 
-
-    private fun setUpRecyclerView() {
+    private fun observeViewModel() {
         viewModel.getAllProject()
+        setUpRecyclerView()
         viewModel.responseGetAllProject.observe(viewLifecycleOwner, Observer { project->
             if (project.isNotEmpty()){
                 projectAdapter.setData(project)
             }
         })
+
+    }
+
+    private fun createSwipe() {
+        binding.swiperefresh.apply {
+            setOnRefreshListener {
+                delayed()
+            }
+            setColorSchemeResources(R.color.colorPrimary, R.color.colorSecondary)
+        }
+
+    }
+
+    private fun delayed() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            observeViewModel()
+            binding.swiperefresh.isRefreshing=false
+        },2000)
+    }
+    private fun setUpRecyclerView() {
 
     }
     private fun generateToken(){

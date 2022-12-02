@@ -1,7 +1,8 @@
 package com.win.gestionderiesgos.ui.home
 
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.adapter.ListProjectAdapter
 import com.win.gestionderiesgos.data.remote.provider.AuthProvider
 import com.win.gestionderiesgos.data.remote.provider.ProjectListProvider
@@ -53,17 +55,34 @@ class HomeClientFragment : Fragment() {
         super.onViewCreated(view , savedInstanceState)
         navController = NavController(requireContext())
         mTokensProvider = TokenProvider()
-        projectAdapter = ListProjectAdapter{onSectorPickingItemSelected(it)}
+        projectAdapter = ListProjectAdapter { onSectorPickingItemSelected(it) }
         mAuthProvider = AuthProvider()
-        lisProjectListProvider= ProjectListProvider()
+        lisProjectListProvider = ProjectListProvider()
         showDialog = ShowDialog(requireContext())
         binding.recyclerView.apply {
             adapter = projectAdapter
             layoutManager = LinearLayoutManager(context)
         }
-
+        createSwipe()
         observerViewModel()
         generateToken()
+    }
+
+    private fun createSwipe() {
+        binding.swiperefresh.apply {
+            setOnRefreshListener {
+                delayed()
+            }
+           setColorSchemeResources(R.color.colorPrimary,R.color.colorSecondary)
+        }
+
+    }
+
+    private fun delayed() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            observerViewModel()
+            binding.swiperefresh.isRefreshing=false
+        },2000)
     }
 
     private fun observerViewModel() {
@@ -73,26 +92,31 @@ class HomeClientFragment : Fragment() {
             if (user.isSuccessful) {
                 viewModel.getProject(mAuthProvider.getId().toString())
                 viewModel.responseGetProject.observe(viewLifecycleOwner , Observer {
-                   setUpRecyclerView(it)
+                    setUpRecyclerView(it)
                 })
+                user.body()?.completeName?.let {
+                    Constants.setValueSharedPreferences(requireActivity(),"nameUser",
+                        it
+                    )
+                }
             }
         })
-        viewModel.noExistProjectForUser.observe(viewLifecycleOwner, Observer { noExist->
-            if (noExist){
+        viewModel.noExistProjectForUser.observe(viewLifecycleOwner , Observer { noExist ->
+            if (noExist) {
                 binding.apply {
                     noData.visibility = View.VISIBLE
-                    title.visibility=View.GONE
-                    recyclerView.visibility=View.GONE
+                    title.visibility = View.GONE
+                    recyclerView.visibility = View.GONE
                 }
                 showDialog.dismissDialog()
             }
         })
 
         viewModel.getProjectByStatus()
-        viewModel.getProjectOrderByStatus.observe(viewLifecycleOwner, Observer {
-            it.forEach { proje->
-                if (proje.status =="Finish"){
-                    sendNotificationToOtherDevice(proje.idKeyProject)
+        viewModel.getProjectOrderByStatus.observe(viewLifecycleOwner , Observer {
+            it.forEach { proje ->
+                if (proje.QuantityPercent == "100.0") {
+                   // sendNotificationToOtherDevice(proje)
 
                 }
             }
@@ -110,7 +134,7 @@ class HomeClientFragment : Fragment() {
     }
 
     private fun setUpRecyclerView(list: List<Project>) {
-        if (list.isNotEmpty()){
+        if (list.isNotEmpty()) {
             showDialog.dismissDialog()
             projectAdapter.setData(list)
             binding.noData.visibility = View.GONE
@@ -118,7 +142,7 @@ class HomeClientFragment : Fragment() {
 
     }
 
-    private fun sendNotificationToOtherDevice(idKeyProject: String) {
+    private fun sendNotificationToOtherDevice(proje: Project) {
         mTokensProvider.getTokenAdmin()
             ?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -127,18 +151,16 @@ class HomeClientFragment : Fragment() {
                             val tokenClient: String = ds.child("token").value.toString()
                             PushNotification(
                                 NotificationData(
-                                    Constants.TITLENOTIFICATION , "Un Proyecto ha sido completado "
+                                    Constants.TITLENOTIFICATION , "El Proyecto ${proje.name} ha sido completado"
                                 ) , tokenClient
                             ).also { push ->
                                 notificationViewModel.sendNotification(push)
                                 notificationViewModel.responseNotification.observe(
                                     viewLifecycleOwner
                                 ) {
-                                  if (it.isSuccessful){
-                                      Log.d("dddddddd",idKeyProject)
-                                      lisProjectListProvider.updateStatusProject(idKeyProject,"Closed")
-                                          .addOnCompleteListener {  }
-                                  }
+                                    if (it.isSuccessful) {
+                                      updateStatusProject(proje)
+                                    }
                                 }
                             }
                         }
@@ -156,6 +178,10 @@ class HomeClientFragment : Fragment() {
                 }
 
             })
+    }
+
+    private fun updateStatusProject(proje: Project) {
+        lisProjectListProvider.updateStatusProject(proje.idKeyProject,"Closed_${proje.name}").isSuccessful
     }
 
     private fun generateToken() {
