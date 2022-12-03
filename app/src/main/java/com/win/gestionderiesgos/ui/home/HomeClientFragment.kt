@@ -99,6 +99,7 @@ class HomeClientFragment : Fragment() {
                         it
                     )
                 }
+                Constants.setValueSharedPreferences(requireActivity(),"roleClient",user.body()!!.role)
             }
         })
         viewModel.noExistProjectForUser.observe(viewLifecycleOwner , Observer { noExist ->

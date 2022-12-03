@@ -137,10 +137,6 @@ class DetailsFusionsActivityFragment : Fragment() {
         viewModel.onClickRisk(nameFusion!!)
         viewModel.responseClickRisk.observe(viewLifecycleOwner , Observer { countTotal ->
             quantityCountRisk = countTotal.toInt()
-            Log.d("fjfjhfhfhfhffhfh",countTotal.toString())
-            if (countTotal!=null){
-                updateClickInGoogleSheet(countTotal)
-            }
 
         })
 
@@ -310,6 +306,7 @@ class DetailsFusionsActivityFragment : Fragment() {
                                     viewLifecycleOwner
                                 ) {
                                     if (it.isSuccessful) {
+                                        updateClickInGoogleSheet(quantityCountRisk.toString())
                                         Toast.makeText( requireContext(), "su riesgo ha sido reportado" , Toast.LENGTH_SHORT).show()
                                     }
                                 }
