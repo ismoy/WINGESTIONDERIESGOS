@@ -14,4 +14,12 @@
         android:title="Registrar Riesgo" />
     <item android:id="@+id/fragment_register_project"
         android:title="Crear Proyecto"/>
+
+    <item android:id="@+id/fragment_show_risk"
+        android:title="Lista de Riesgos"/>
+
+    <item android:id="@+id/fragment_show_activities"
+        android:title="Lista de Actividades"/>
+    <item android:id="@+id/singOut"
+        android:title="Cerrar Sesion"/>
 </menu>

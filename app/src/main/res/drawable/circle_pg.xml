@@ -19,7 +19,7 @@
                 android:thicknessRatio="16"
                 android:useLevel="true">
 
-                <solid android:color="#00BCD4"/>
+                <solid android:color="@color/colorPrimary"/>
             </shape>
         </rotate>
 

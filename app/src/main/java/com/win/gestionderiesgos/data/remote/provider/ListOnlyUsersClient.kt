@@ -6,7 +6,8 @@ import com.google.firebase.database.Query
 
 class ListOnlyUsersClient {
     var mDatabase: DatabaseReference?= FirebaseDatabase.getInstance().reference.child("Clients")
-    suspend fun getListUser():DatabaseReference? {
+     fun getListUser():DatabaseReference? {
         return mDatabase
     }
+
 }

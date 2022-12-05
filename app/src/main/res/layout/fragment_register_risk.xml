@@ -6,35 +6,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.registerRisk.RegisterRiskFragment">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Registro de Actividades"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:layout_marginTop="60dp"
-        android:textAlignment="center"/>
-
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutdrop"
+        android:id="@+id/layoutProject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:helperTextTextColor="@color/design_default_color_error"
         android:layout_marginHorizontal="80dp"
+        app:layout_constraintVertical_bias="0.3">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextViewProject"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Selecciona un Proyecto"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutdrop"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:helperTextTextColor="@color/design_default_color_error"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.3"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutProject">
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Selecciona la Funcion"
-            android:inputType="none"/>
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,10 +56,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="80dp"
         android:hint="INGRESE ACTIVIDAD"
+        app:helperTextTextColor="@color/design_default_color_error"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/layoutdrop">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_activity"

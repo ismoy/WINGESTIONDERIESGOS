@@ -18,6 +18,8 @@ class DetailsFusionActivityAdapter:RecyclerView.Adapter<ViewHolderDetailsFusions
     override fun onBindViewHolder(holder: ViewHolderDetailsFusionsAdapter , position: Int) {
        val currentList = projectList[position]
         holder.renderDetailsFusionActivity(currentList,holder)
+        holder.setIsRecyclable(false)
+
     }
 
     override fun getItemCount() =projectList.size

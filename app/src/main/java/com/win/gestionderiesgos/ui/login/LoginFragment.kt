@@ -19,6 +19,7 @@ import com.win.gestionderiesgos.presentation.login.LoginViewModel
 import com.win.gestionderiesgos.ui.activity.Home.HomeActivity
 import com.win.gestionderiesgos.ui.activity.Home.HomeClientActivity
 import com.win.gestionderiesgos.ui.activity.registerFuncion.RegisterFuncionActivity
+import com.win.gestionderiesgos.utils.Constants
 import com.win.gestionderiesgos.utils.ShowDialog
 
 class LoginFragment : Fragment() {
@@ -119,9 +120,10 @@ class LoginFragment : Fragment() {
                             startActivity(Intent(requireContext(),HomeActivity ::class.java))
                             requireActivity().finish()
                             mShowDialog.dismissDialog()
+                            Constants.setValueSharedPreferences(requireActivity(),"roleAdmin",user.body()!!.role)
                         }
                     }else{
-                        Toast.makeText(requireContext() , user.errorBody().toString() , Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext() , user.message().toString() , Toast.LENGTH_SHORT).show()
                         mShowDialog.dismissDialog()
                     }
                 })

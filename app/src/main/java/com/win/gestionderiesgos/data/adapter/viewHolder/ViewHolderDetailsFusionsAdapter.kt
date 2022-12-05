@@ -1,26 +1,30 @@
 package com.win.gestionderiesgos.data.adapter.viewHolder
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.win.gestionderiesgos.R
 import com.win.gestionderiesgos.data.remote.provider.GetDetailsFusionActivityProvider
 import com.win.gestionderiesgos.databinding.ItemListActivityBinding
 import com.win.gestionderiesgos.domain.model.Actividad
-import com.win.gestionderiesgos.presentation.registerActivity.RegisterActivityViewModel
 import com.win.gestionderiesgos.services.TimerService
+import com.win.gestionderiesgos.ui.fragment.detailsFusionActivity.DialogFragment
+import com.win.gestionderiesgos.utils.Constants
 import kotlin.math.roundToInt
+
 
 class ViewHolderDetailsFusionsAdapter(view: View): RecyclerView.ViewHolder(view) {
     private val binding =ItemListActivityBinding.bind(view)
-    private var timerStarted =false
     private lateinit var serviceIntent: Intent
     private var time = 0.0
     private var idKeyActivity:String?=null
@@ -35,11 +39,13 @@ class ViewHolderDetailsFusionsAdapter(view: View): RecyclerView.ViewHolder(view)
         binding.apply {
             nameActivity.text =currentList.actividad
             if (currentList.QuantityPercent>"0"){
-                timerActivity.text =currentList.timeFinish.toString()
+                timerActivity.text =currentList.timeFinish
                 startActivity.visibility =View.GONE
                 power.visibility =View.VISIBLE
                 power.isEnabled=false
                 status.visibility =View.VISIBLE
+                addRisk.isEnabled=false
+                startActivity.isEnabled=false
             }else{
                 itemView.context .registerReceiver(updateTime,IntentFilter(TimerService.TIMER_UPDATED))
             }
@@ -73,7 +79,7 @@ class ViewHolderDetailsFusionsAdapter(view: View): RecyclerView.ViewHolder(view)
             if (binding.startActivity.isVisible){
                 binding.timerActivity.text= ""
             }else{
-                detailsProvider.updateTimer(idKeyActivity.toString(),time.toString())?.addOnSuccessListener {}
+                detailsProvider.updateTimer(idKeyActivity.toString(),getTimeStringFromDouble(time))?.addOnSuccessListener {}
                 binding.timerActivity.text =getTimeStringFromDouble(time)
             }
         }
@@ -92,6 +98,7 @@ class ViewHolderDetailsFusionsAdapter(view: View): RecyclerView.ViewHolder(view)
 
     private fun onClickListener(holder: ViewHolderDetailsFusionsAdapter) {
 
+
         binding.apply {
             startActivity.setOnClickListener {
                 startTimer()
@@ -99,6 +106,23 @@ class ViewHolderDetailsFusionsAdapter(view: View): RecyclerView.ViewHolder(view)
             power.setOnClickListener {
                 stopTimer()
                 detailsProvider.updateQuantityPercent(idKeyActivity.toString(),"25")
+                detailsProvider.updateStatus(idKeyActivity.toString(),"Finish")
+                detailsProvider.updateStatusIdKeyFusion(idKeyActivity.toString(),"${currentItem?.idKeyFusion}_Finish")
+                detailsProvider.updateStatusNameUser(idKeyActivity.toString(),Constants.getValueSharedPreferences(
+                    power.context as Activity ,"nameUser"))
+                detailsProvider.updateStatusNameProject(idKeyActivity.toString(),Constants.getValueSharedPreferences(
+                    power.context as Activity ,"nameProjects"))
+            }
+
+            addRisk.setOnClickListener {
+                val activity = power.context as FragmentActivity
+                val fm: FragmentManager = activity.supportFragmentManager
+                val dialog =DialogFragment()
+                dialog.show(fm ,"DialogFragment")
+                (power.context as FragmentActivity).intent.putExtra("userId",currentItem?.idUser)
+                (power.context as FragmentActivity).intent.putExtra("nameFusion",currentItem?.funcion)
+                (power.context as FragmentActivity).intent.putExtra("idKeyActivity",currentItem?.idKeyActivity)
+                (power.context as FragmentActivity).intent.putExtra("idKeyFusion",currentItem?.idKeyFusion)
             }
         }
     }

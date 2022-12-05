@@ -9,6 +9,8 @@ import com.win.gestionderiesgos.data.adapter.viewHolder.ViewHolderListProjectAda
 import com.win.gestionderiesgos.domain.model.Project
 
 class ListProjectAdapter(private val onClickListener:(Project) -> Unit):RecyclerView.Adapter<ViewHolderListProjectAdapter>() {
+
+
     private var projectList = emptyList<Project>()
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): ViewHolderListProjectAdapter {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_proyect_list,parent,false)
@@ -18,6 +20,7 @@ class ListProjectAdapter(private val onClickListener:(Project) -> Unit):Recycler
     override fun onBindViewHolder(holder: ViewHolderListProjectAdapter , position: Int) {
        val currentList = projectList[position]
         holder.renderListProject(currentList,onClickListener)
+        holder.setIsRecyclable(false)
     }
 
     override fun getItemCount() =projectList.size

@@ -8,6 +8,7 @@ import com.win.gestionderiesgos.domain.model.Token
 /** * Created by ISMOY BELIZAIRE on 12/11/2022. */
 class TokenProvider {
     var mDatabaseReference: DatabaseReference? = FirebaseDatabase.getInstance().reference.child("Tokens")
+    var mDatabase: DatabaseReference? = FirebaseDatabase.getInstance().reference.child("TokensAdmin")
 
     fun createToken(idUser:String?){
         if (idUser ==null) return
@@ -18,4 +19,20 @@ class TokenProvider {
             }
     }
 
+    fun createTokenAdmin(idUser:String?){
+        if (idUser ==null) return
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task->
+                val token = Token(task.result)
+                mDatabase?.child(idUser)?.setValue(token)
+            }
+    }
+
+    fun getTokenClient(): DatabaseReference? {
+        return mDatabaseReference
+    }
+
+    fun getTokenAdmin(): DatabaseReference? {
+        return mDatabase
+    }
 }
